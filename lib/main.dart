@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Dashboard(),
+      home: ChangePasswordScreen(),
     );
   }
 }
