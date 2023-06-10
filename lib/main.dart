@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intruderdetection/Screens/dashboard.dart';
+
+import '../../../Push garna/intruderdetection/lib/Screens/biometrics_login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Dashboard(),
+      home: Fingerprint(),
     );
   }
 }

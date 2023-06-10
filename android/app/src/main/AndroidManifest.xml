@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.intruderdetection">
+    <uses-permission android:name="android.permission.FINGERPRINT"/>
    <application
         android:label="intruderdetection"
         android:name="${applicationName}"
