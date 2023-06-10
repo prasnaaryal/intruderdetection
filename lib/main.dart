@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../Push garna/intruderdetection/lib/Screens/biometrics_login.dart';
+import 'Screens/biometrics_login.dart';
+
 
 void main() {
   runApp(const MyApp());
