@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:local_auth/local_auth.dart';
 
 class Fingerprint extends StatefulWidget {
@@ -94,6 +95,13 @@ class _FingerprintState extends State<Fingerprint> {
 
     setState(
         () => _authorized = authenticated ? 'Authorized' : 'Not Authorized');
+    if (authenticated) {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => Dashboard(),
+        ),
+      );
+    }
   }
 
   Future<void> _authenticateWithBiometrics() async {
@@ -137,90 +145,6 @@ class _FingerprintState extends State<Fingerprint> {
     await auth.stopAuthentication();
     setState(() => _isAuthenticating = false);
   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           title: const Text('Plugin example app'),
-//         ),
-//         body: ListView(
-//           padding: const EdgeInsets.only(top: 30),
-//           children: <Widget>[
-//             Column(
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: <Widget>[
-//                 if (_supportState == _SupportState.unknown)
-//                   const CircularProgressIndicator()
-//                 else if (_supportState == _SupportState.supported)
-//                   const Text('This device is supported')
-//                 else
-//                   const Text('This device is not supported'),
-//                 const Divider(height: 100),
-//                 Text('Can check biometrics: $_canCheckBiometrics\n'),
-//                 ElevatedButton(
-//                   onPressed: _checkBiometrics,
-//                   child: const Text('Check biometrics'),
-//                 ),
-//                 const Divider(height: 100),
-//                 Text('Available biometrics: $_availableBiometrics\n'),
-//                 ElevatedButton(
-//                   onPressed: _getAvailableBiometrics,
-//                   child: const Text('Get available biometrics'),
-//                 ),
-//                 const Divider(height: 100),
-//                 Text('Current State: $_authorized\n'),
-//                 if (_isAuthenticating)
-//                   ElevatedButton(
-//                     onPressed: _cancelAuthentication,
-//                     // TODO(goderbauer): Make this const when this package requires Flutter 3.8 or later.
-//                     // ignore: prefer_const_constructors
-//                     child: Row(
-//                       mainAxisSize: MainAxisSize.min,
-//                       children: const <Widget>[
-//                         Text('Cancel Authentication'),
-//                         Icon(Icons.cancel),
-//                       ],
-//                     ),
-//                   )
-//                 else
-//                   Column(
-//                     children: <Widget>[
-//                       ElevatedButton(
-//                         onPressed: _authenticate,
-//                         // TODO(goderbauer): Make this const when this package requires Flutter 3.8 or later.
-//                         // ignore: prefer_const_constructors
-//                         child: Row(
-//                           mainAxisSize: MainAxisSize.min,
-//                           children: const <Widget>[
-//                             Text('Authenticate'),
-//                             Icon(Icons.perm_device_information),
-//                           ],
-//                         ),
-//                       ),
-//                       ElevatedButton(
-//                         onPressed: _authenticateWithBiometrics,
-//                         child: Row(
-//                           mainAxisSize: MainAxisSize.min,
-//                           children: <Widget>[
-//                             Text(_isAuthenticating
-//                                 ? 'Cancel'
-//                                 : 'Authenticate: biometrics only'),
-//                             const Icon(Icons.fingerprint),
-//                           ],
-//                         ),
-//                       ),
-//                     ],
-//                   ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intruderdetection/Screens/biometrics_login.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -142,72 +143,16 @@ class _DashboardState extends State<Dashboard> {
                     Row(
                       children: [
                         ButtonBar(
-                          alignment: MainAxisAlignment.start,
-                          buttonPadding: EdgeInsets.symmetric(horizontal: 16),
-                          children: [
-                            ElevatedButton(
-                              onPressed: () {
-                                // Button 3 action
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.blue[800],
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                minimumSize: Size(180, 150),
-                              ),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.camera,
-                                    size: 40,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    'Button 1',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            ElevatedButton(
-                              onPressed: () {
-                                // Button 2 action
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: Colors.blue[800],
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                minimumSize: Size(180, 150),
-                              ),
-                              child: Column(
-                                children: [
-                                  Icon(
-                                    Icons.camera,
-                                    size: 40,
-                                    color: Colors.white,
-                                  ),
-                                  Text(
-                                    'Button 2',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        ButtonBar(
                           // alignment: MainAxisAlignment.spaceBetween,
                           buttonPadding: EdgeInsets.symmetric(horizontal: 16),
                           children: [
                             ElevatedButton(
                               onPressed: () {
-                                // Button 3 action
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => Fingerprint(),
+                                  ),
+                                );
                               },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.blue[800],
