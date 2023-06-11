@@ -1,49 +1,54 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:intruderdetection/Screens/Signin.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
+// import 'package:intruderdetection/Screens/login.dart';
 
-void main() {
-  runApp(const MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+void main() async {
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Home-security',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Dashboard(),
-    );
+  WidgetsFlutterBinding.ensureInitialized();
+  try{
+    await Firebase.initializeApp();
+  }catch(e){
+    print(e);
   }
+  runApp(MaterialApp(
+    navigatorKey: navigatorkey,
+    debugShowCheckedModeBanner: false,
+    initialRoute: "login",
+    routes: {
+      "login":(context) => Signin(),
+    },
+  ));
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+final navigatorkey=GlobalKey<NavigatorState>();
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class MainPage extends StatelessWidget{
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget build(BuildContext context) =>Scaffold(
+    body:StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          // if (snapshot.connectionState == ConnectionState.waiting){
+          //   return Center(child: CircularProgressIndicator());
+          // }git
+
+          if(snapshot.hasError){
+            return Center(child:Text("Something went wrong !"));
+
+          }else if (snapshot.hasData){
+            // if the user is logged in
+            return Dashboard();
+
+          }else
+            //  if the user is looged out
+            return Signin();
+        }
+    ),
+  );
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+// onpressed:()=>FirebaseAuth.instance.signOut(),
