@@ -1,9 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-
 
 import '../viewmodel/auth_viewmodel.dart';
 import '../viewmodel/global_ui_viewmodel.dart';
@@ -29,18 +25,21 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     _ui.loadState(true);
     try {
-      await _authViewModel.login(_emailController.text, _passwordController.text).then((value) {
-
+      await _authViewModel
+          .login(_emailController.text, _passwordController.text)
+          .then((value) {
         // NotificationService.display(
         //   title: "Welcome back",
         //   body: "Hello ${_authViewModel.loggedInUser?.name},\n Hope you are having a wonderful day.",
         // );
         Navigator.of(context).pushReplacementNamed('/dashboard');
       }).catchError((e) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message.toString())));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(e.message.toString())));
       });
     } catch (err) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(err.toString())));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(err.toString())));
     }
     _ui.loadState(false);
   }
@@ -65,10 +64,12 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.all(20),
               child: Column(
                 children: [
-                  Image.asset(
-                    "assets/images/logo.png",
-                    height: 100,
-                    width: 100,
+                  Text(
+                    "Login from here",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: Colors.grey.shade800),
                   ),
                   SizedBox(
                     height: 10,
@@ -79,16 +80,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: ValidateLogin.emailValidate,
                     style: const TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
                       border: InputBorder.none,
                       prefixIcon: Icon(
                         Icons.email,
-                        color: Colors.black,
+                        color: Colors.blue[800],
                         size: 22.0,
                       ),
                       hintText: 'Email Address',
-                      hintStyle: TextStyle( fontSize: 17.0),
+                      hintStyle: TextStyle(fontSize: 17.0),
                     ),
                   ),
                   SizedBox(
@@ -100,15 +103,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     validator: ValidateLogin.password,
                     style: const TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                      focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20)),
                       prefixIcon: const Icon(
                         Icons.lock,
                         size: 22.0,
-                        color: Colors.black,
+                        color: Colors.blue,
                       ),
                       hintText: 'Password',
-                      hintStyle: const TextStyle(fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
+                      hintStyle: const TextStyle(
+                          fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -116,9 +122,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         },
                         child: Icon(
-                          _obscureTextPassword ? Icons.visibility : Icons.visibility_off,
+                          _obscureTextPassword
+                              ? Icons.visibility
+                              : Icons.visibility_off,
                           size: 20.0,
-                          color: Colors.black,
+                          color: Colors.blue[800],
                         ),
                       ),
                     ),
@@ -134,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Forgot password?",
-                          style: TextStyle(color: Colors.grey.shade800),
+                          style: TextStyle(color: Colors.blue[800]),
                         ),
                       )),
                   SizedBox(
@@ -143,11 +151,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   Container(
                     width: double.infinity,
                     child: ElevatedButton(
-                      style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.pink.shade100),
-                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20), side: BorderSide(color: Colors.pink.shade200))),
-                          padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.symmetric(vertical: 20)),
-                        
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blue[800]),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      side: BorderSide(
+                                          color: Colors.blue.shade400))),
+                          padding: MaterialStateProperty.all<EdgeInsets>(
+                              EdgeInsets.symmetric(vertical: 20)),
                         ),
                         onPressed: () {
                           login();
@@ -159,23 +173,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(
                     height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Are you new? Create an account ",
-                        style: TextStyle(color: Colors.grey.shade800),
-                      ),
-                      InkWell(
-                          onTap: () {
-                            Navigator.of(context).pushNamed("/register");
-                          },
-                          child: Text(
-                            "Sign up",
-                            style: TextStyle(color: Colors.pink),
-                          ))
-                    ],
                   ),
                 ],
               ),
