@@ -126,7 +126,7 @@ class _DashboardState extends State<Dashboard> {
                           child: Column(
                             children: [
                               Icon(
-                                Icons.camera,
+                                Icons.pin,
                                 size: 40,
                                 color: Colors.white,
                               ),
@@ -136,6 +136,66 @@ class _DashboardState extends State<Dashboard> {
                               ),
                             ],
                           ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        ButtonBar(
+                          alignment: MainAxisAlignment.start,
+                          buttonPadding: EdgeInsets.symmetric(horizontal: 16),
+                          children: [
+                            ElevatedButton(
+                              onPressed: () {
+                                // Button Face Recognition action
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue[800],
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                minimumSize: Size(180, 150),
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.camera,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    'Face Recognition',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            ElevatedButton(
+                              onPressed: () {
+                                // Button Change password action
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue[800],
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                minimumSize: Size(180, 150),
+                              ),
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.pin,
+                                    size: 40,
+                                    color: Colors.white,
+                                  ),
+                                  Text(
+                                    'PIN Code',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
