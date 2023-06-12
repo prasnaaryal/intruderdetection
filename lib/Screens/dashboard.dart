@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
+import 'package:intruderdetection/Screens/photos.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -115,7 +116,11 @@ class _DashboardState extends State<Dashboard> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            // Button Change password action
+                             Navigator.of(context).pop();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>  UploadAndViewImages()));
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blue[800],

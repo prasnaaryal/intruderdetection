@@ -4,9 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
+import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/global_ui_viewmodel.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
+
+import 'Screens/photos.dart';
+import 'Screens/uploadImage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => FaceViewModel()),
         ChangeNotifierProvider(create: (_) => GlobalUIViewModel()),
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
       ],
@@ -49,6 +54,7 @@ class MyApp extends StatelessWidget {
             context.loaderOverlay.hide();
           }
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(
               // This is the theme of your application.
@@ -59,14 +65,16 @@ class MyApp extends StatelessWidget {
               // "hot reload" (press "r" in the console where you ran "flutter run",
               // or simply save your changes to "hot reload" in a Flutter IDE).
               // Notice that the counter didn't reset back to zero; the application
-              // is not restarted.
-              primarySwatch: Colors.pink,
+              // is not restarted.g
+              primarySwatch: Colors.grey,
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/login",
+            initialRoute: "/uploadandview",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),
+              "/addFace" :(BuildContext context) => AddKnowFaces(),
+              "/uploadandview":(BuildContext context) => UploadAndViewImages(),
             },
           );
         }),
