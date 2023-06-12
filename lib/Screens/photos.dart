@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/uploadImage.dart';
 
 class UploadAndViewImages extends StatefulWidget {
@@ -17,8 +17,6 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
   final ImagePicker _picker = ImagePicker();
   File? _image;
   List<String> _uploadedImageUrls = [];
-
- 
 
   Future<void> _getImageFromCamera() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.camera);
@@ -76,6 +74,14 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Dashboard()));
+          },
+        ),
         title: Text('Known Faces'),
       ),
       body: ListView(
@@ -90,9 +96,7 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
                     height: 200,
                   ),
                 SizedBox(height: 10),
-                
                 SizedBox(height: 10),
-               
               ],
             ),
           ),
@@ -101,14 +105,14 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () {
-        Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) =>
-             AddKnowFaces(),
-        ),
-      );
-      },),
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddKnowFaces(),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -116,26 +120,24 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
 class ViewUploadedImages extends StatefulWidget {
 // final List<String> imageUrls;
 
-
-
   @override
   _ViewUploadedImagesState createState() => _ViewUploadedImagesState();
 }
 
 class _ViewUploadedImagesState extends State<ViewUploadedImages> {
   @override
-   Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
-  //     appBar: AppBar(
-  //       title: Text('Uploaded Images'),
-  //     ),
-  //     body: ListView.builder(
-  //       itemCount: widget.imageUrls.length,
-  //       itemBuilder: (context, index) {
-  //         final imageUrl = widget.imageUrls[index];
-  //         return Image.network(imageUrl);
-  //       },
-  //     ),
-    );
+        //     appBar: AppBar(
+        //       title: Text('Uploaded Images'),
+        //     ),
+        //     body: ListView.builder(
+        //       itemCount: widget.imageUrls.length,
+        //       itemBuilder: (context, index) {
+        //         final imageUrl = widget.imageUrls[index];
+        //         return Image.network(imageUrl);
+        //       },
+        //     ),
+        );
   }
 }

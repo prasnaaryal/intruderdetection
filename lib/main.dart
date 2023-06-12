@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
@@ -69,12 +70,13 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.grey,
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/uploadandview",
+            initialRoute: "/login",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),
-              "/addFace" :(BuildContext context) => AddKnowFaces(),
-              "/uploadandview":(BuildContext context) => UploadAndViewImages(),
+              "/biometrics": (BuildContext context) => Fingerprint(),
+              "/addFace": (BuildContext context) => AddKnowFaces(),
+              "/uploadandview": (BuildContext context) => UploadAndViewImages(),
             },
           );
         }),

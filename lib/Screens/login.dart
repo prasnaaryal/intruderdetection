@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _pinController = TextEditingController();
 
   bool _obscureTextPassword = true;
 
@@ -27,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _ui.loadState(true);
     try {
       await _authViewModel
-          .login(_emailController.text, _passwordController.text)
+          .login(_emailController.text, _pinController.text)
           .then((value) {
         // NotificationService.display(
         //   title: "Welcome back",
@@ -98,24 +99,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  TextFormField(
-                    controller: _passwordController,
+                  TextField(
+                    controller: _pinController,
                     obscureText: _obscureTextPassword,
-                    validator: ValidateLogin.password,
-                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    style: const TextStyle(fontSize: 16.0, color: Colors.pink),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
                       prefixIcon: const Icon(
-                        Icons.lock,
+                        Icons.pin_outlined,
                         size: 22.0,
-                        color: Colors.blue,
+                        color: Colors.black,
                       ),
-                      hintText: 'Password',
-                      hintStyle: const TextStyle(
-                          fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
+                      hintText: 'PIN',
+                      hintStyle: const TextStyle(fontSize: 17.0),
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -127,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ? Icons.visibility
                               : Icons.visibility_off,
                           size: 20.0,
-                          color: Colors.blue[800],
+                          color: Colors.black,
                         ),
                       ),
                     ),
@@ -139,10 +142,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).pushNamed("/forget-password");
+                          Navigator.of(context).pushNamed("/forget-pin");
                         },
                         child: Text(
-                          "Forgot password?",
+                          "Forgot PIN?",
                           style: TextStyle(color: Colors.blue[800]),
                         ),
                       )),
@@ -217,7 +220,7 @@ class ValidateLogin {
 
   static String? password(String? value) {
     if (value == null || value.isEmpty) {
-      return "Password is required";
+      return "PIN is required";
     }
     return null;
   }

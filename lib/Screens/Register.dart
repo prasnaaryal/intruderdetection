@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intruderdetection/models/user_model.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/global_ui_viewmodel.dart';
@@ -13,10 +14,15 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _confirmPasswordController = TextEditingController();
+  TextEditingController _pinTextController = TextEditingController();
   bool _obscureTextPassword = true;
-  bool _obscureTextPasswordConfirm = true;
+  // bool _obscureTextPasswordConfirm = true;
+
+  @override
+  void dispose() {
+    _pinTextController.dispose();
+    super.dispose();
+  }
 
   late GlobalUIViewModel _ui;
   late AuthViewModel _authViewModel;
@@ -37,7 +43,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       await _authViewModel
           .register(UserModel(
         email: _emailController.text,
-        password: _passwordController.text,
+        password: _pinTextController.text,
+        // password: _passwordController.text,
       ))
           .then((value) {
         // NotificationService.display(
@@ -100,11 +107,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  TextFormField(
-                    controller: _passwordController,
+                  TextField(
+                    controller: _pinTextController,
                     obscureText: _obscureTextPassword,
-                    validator: (String? value) => ValidateSignup.password(
-                        value, _confirmPasswordController),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
                     style: const TextStyle(fontSize: 16.0, color: Colors.pink),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -112,11 +121,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
                       prefixIcon: const Icon(
-                        Icons.lock,
+                        Icons.pin_outlined,
                         size: 22.0,
                         color: Colors.black,
                       ),
-                      hintText: 'Password',
+                      hintText: 'PIN',
                       hintStyle: const TextStyle(fontSize: 17.0),
                       suffixIcon: GestureDetector(
                         onTap: () {
@@ -134,45 +143,79 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                   ),
+                  // TextFormField(
+                  //   controller: _passwordController,
+                  //   obscureText: _obscureTextPassword,
+                  //   // validator: (String? value) => ValidateSignup.password(
+                  //   //     value, _confirmPasswordController),
+                  //   style: const TextStyle(fontSize: 16.0, color: Colors.pink),
+                  //   decoration: InputDecoration(
+                  //     enabledBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(20)),
+                  //     focusedBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(20)),
+                  //     prefixIcon: const Icon(
+                  //       Icons.lock,
+                  //       size: 22.0,
+                  //       color: Colors.black,
+                  //     ),
+                  //     hintText: 'Password',
+                  //     hintStyle: const TextStyle(fontSize: 17.0),
+                  //     suffixIcon: GestureDetector(
+                  //       onTap: () {
+                  //         setState(() {
+                  //           _obscureTextPassword = !_obscureTextPassword;
+                  //         });
+                  //       },
+                  //       child: Icon(
+                  //         _obscureTextPassword
+                  //             ? Icons.visibility
+                  //             : Icons.visibility_off,
+                  //         size: 20.0,
+                  //         color: Colors.black,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 10,
                   ),
-                  TextFormField(
-                    controller: _confirmPasswordController,
-                    obscureText: _obscureTextPasswordConfirm,
-                    validator: (String? value) =>
-                        ValidateSignup.password(value, _passwordController),
-                    style: const TextStyle(fontSize: 16.0, color: Colors.pink),
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20)),
-                      prefixIcon: const Icon(
-                        Icons.lock_clock,
-                        size: 22.0,
-                        color: Colors.black,
-                      ),
-                      hintText: 'Confirm Password',
-                      hintStyle: const TextStyle(
-                          fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _obscureTextPasswordConfirm =
-                                !_obscureTextPasswordConfirm;
-                          });
-                        },
-                        child: Icon(
-                          _obscureTextPasswordConfirm
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          size: 20.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // TextFormField(
+                  //   controller: _confirmPasswordController,
+                  //   obscureText: _obscureTextPasswordConfirm,
+                  //   validator: (String? value) =>
+                  //       ValidateSignup.password(value, _passwordController),
+                  //   style: const TextStyle(fontSize: 16.0, color: Colors.pink),
+                  //   decoration: InputDecoration(
+                  //     enabledBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(20)),
+                  //     focusedBorder: OutlineInputBorder(
+                  //         borderRadius: BorderRadius.circular(20)),
+                  //     prefixIcon: const Icon(
+                  //       Icons.lock_clock,
+                  //       size: 22.0,
+                  //       color: Colors.black,
+                  //     ),
+                  //     hintText: 'Confirm Password',
+                  //     hintStyle: const TextStyle(
+                  //         fontFamily: 'WorkSansSemiBold', fontSize: 17.0),
+                  //     suffixIcon: GestureDetector(
+                  //       onTap: () {
+                  //         setState(() {
+                  //           _obscureTextPasswordConfirm =
+                  //               !_obscureTextPasswordConfirm;
+                  //         });
+                  //       },
+                  //       child: Icon(
+                  //         _obscureTextPasswordConfirm
+                  //             ? Icons.visibility
+                  //             : Icons.visibility_off,
+                  //         size: 20.0,
+                  //         color: Colors.black,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 20,
                   ),
@@ -230,12 +273,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
 }
 
 class ValidateSignup {
-  static String? name(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Name is required";
-    }
-    return null;
-  }
+  // static String? name(String? value) {
+  //   if (value == null || value.isEmpty) {
+  //     return "Name is required";
+  //   }
+  //   return null;
+  // }
 
   static String? emailValidate(String? value) {
     final RegExp emailValid = RegExp(
@@ -249,30 +292,16 @@ class ValidateSignup {
     return null;
   }
 
-  static String? phone(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Phone number is required";
-    }
-    return null;
-  }
-
-  static String? username(String? value) {
-    if (value == null || value.isEmpty) {
-      return "Username is required";
-    }
-    return null;
-  }
-
   static String? password(String? value, TextEditingController otherPassword) {
     if (value == null || value.isEmpty) {
-      return "Password is required";
+      return "PIN is required";
     }
-    if (value.length < 8) {
-      return "Password should be at least 8 character";
+    if (value.length < 4) {
+      return "PIN should be at least 4 character";
     }
-    if (otherPassword.text != value) {
-      return "Please make sure both the password are the same";
-    }
+    // if (otherPassword.text != value) {
+    //   return "Please make sure both the password are the same";
+    // }
     return null;
   }
 }

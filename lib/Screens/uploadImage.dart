@@ -2,11 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:image_picker/image_picker.dart';
 import 'package:intruderdetection/Screens/photos.dart';
 import 'package:intruderdetection/models/faces.dart';
-
 import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -15,18 +13,16 @@ import '../viewmodel/auth_viewmodel.dart';
 import '../viewmodel/global_ui_viewmodel.dart';
 
 class AddKnowFaces extends StatefulWidget {
- 
-
   @override
   State<AddKnowFaces> createState() => _AddKnowFacesState();
 }
 
 class _AddKnowFacesState extends State<AddKnowFaces> {
-    // database
+  // database
   late GlobalUIViewModel _ui;
   late AuthViewModel _auth;
   late FaceViewModel _face;
-   @override
+  @override
   void initState() {
     _ui = Provider.of<GlobalUIViewModel>(context, listen: false);
     _auth = Provider.of<AuthViewModel>(context, listen: false);
@@ -37,7 +33,6 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
   List<String> _uploadedImageUrls = [];
   bool buttonPressed = false;
   String name = '';
- 
 
   TextEditingController face_name = new TextEditingController();
   FocusNode myFocusNode = new FocusNode();
@@ -45,9 +40,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
   String? imagePath;
   String? imageUrl;
   final form = GlobalKey<FormState>();
-    @override
-
-
+  @override
   Future setImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -62,23 +55,26 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
   }
-    Future<void> uploadImage(File file, String name) async {
-    var p0  = await FirebaseService.storageRef
+
+  Future<void> uploadImage(File file, String name) async {
+    var p0 = await FirebaseService.storageRef
         .child("faces")
         .child("$name.jpg")
         .putFile(file);
-        
-      var url = await p0.ref.getDownloadURL();
-        setState(() {
-          imagePath = p0.ref.fullPath;
-          imageUrl = url;
-        });
+
+    var url = await p0.ref.getDownloadURL();
+    setState(() {
+      imagePath = p0.ref.fullPath;
+      imageUrl = url;
+    });
   }
 
-   Future<void> faceadding() async {
-   // _ui.loadState(true);
+  Future<void> faceadding() async {
+    // _ui.loadState(true);
     try {
-      await _face.addFace(Face(name: face_name.text, imagepath: imagePath, imageurl: imageUrl))
+      await _face
+          .addFace(Face(
+              name: face_name.text, imagepath: imagePath, imageurl: imageUrl))
           .then((value) => null)
           .catchError((e) {
         ScaffoldMessenger.of(context)
@@ -88,30 +84,30 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(err.toString())));
     }
-    
   }
 
- 
   @override
   Widget build(BuildContext context) {
-      return SafeArea(
+    return SafeArea(
       child: Container(
-          decoration: BoxDecoration(
-           color: Colors.white
-          ),
+          decoration: BoxDecoration(color: Colors.white),
           child: Scaffold(
-            appBar: AppBar(
-              leading:  IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) =>  ViewUploadedImages()));
-            },
-            icon: Icon(Icons.arrow_back)),
-              title: Text("Add Image", style: TextStyle(color: Colors.white),),
-            ),
-              backgroundColor: Colors.black,
-              
+              appBar: AppBar(
+                leading: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ViewUploadedImages()));
+                    },
+                    icon: Icon(Icons.arrow_back)),
+                title: Text(
+                  "Add Image",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              backgroundColor: Colors.white,
               body: Form(
                 // autovalidateMode: AutovalidateMode.onUserInteraction,
                 key: form,
@@ -121,20 +117,18 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                     padding: EdgeInsets.all(40),
                     child: Center(
                         child: ListView(
-
                       children: [
                         InkWell(
                           child: Center(
                             child: CircleAvatar(
-                              
-                              backgroundColor:  Color(0xFF6D3F83),
+                              backgroundColor: Color(0xFF6D3F83),
                               radius: 85,
                               child: CircleAvatar(
-                              
                                 backgroundImage: image != null
                                     ? FileImage(File(image!.path))
                                         as ImageProvider
-                                    : AssetImage('assets/images/dummyProfileImage.jfif'),
+                                    : AssetImage(
+                                        'assets/images/dummyProfileImage.jfif'),
                                 radius: 80,
                               ),
                             ),
@@ -160,7 +154,6 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                           },
                           decoration: InputDecoration(
                               errorStyle: TextStyle(color: Colors.black),
-                             
                               labelText: "Name",
                               labelStyle: TextStyle(
                                   fontFamily: 'roboto',
@@ -177,35 +170,29 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                           }),
                         ),
                         SizedBox(height: 10),
-                       
                         SizedBox(height: 10),
-                       
                         SizedBox(height: 40),
                         SizedBox(
                           width: 100,
                           height: 50,
                           child: ElevatedButton(
-                              onHover: (value) {
+                            onHover: (value) {
                               setState(() {
                                 !buttonPressed;
                                 ElevatedButton.styleFrom(
                                     backgroundColor: Colors.black,
-                                    foregroundColor:
-                                        Colors.white);
+                                    foregroundColor: Colors.white);
                               });
                             },
                             onPressed: (() {
                               buttonPressed = !buttonPressed;
                               // if (true) {
                               if (form.currentState!.validate()) {
-                                
                                 uploadImage(image!, name).then((value) {
-                                 
                                   faceadding();
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content:
-                                              Text("Face Added Sucess")));
+                                          content: Text("Face Added Sucess")));
                                   // Navigator.push(
                                   //   context,
                                   //   MaterialPageRoute(
@@ -229,18 +216,13 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                                   Color.fromARGB(255, 230, 211, 239),
                             ),
                           ),
-                          ),
-                        
-                        
-                       
-                       
+                        ),
                         SizedBox(
                           height: 10,
                         ),
                         SizedBox(
                           height: 10,
                         ),
-                       
                       ],
                     )),
                   ),
@@ -309,5 +291,5 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
             )
           ],
         ));
-        }
+  }
 }
