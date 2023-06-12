@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intruderdetection/Screens/Notification.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/photos.dart';
 
@@ -58,17 +59,30 @@ class _DashboardState extends State<Dashboard> {
               //     ),
               //   )),
               // ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue[600],
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: EdgeInsets.all(12),
-                child: Icon(
-                  Icons.notifications,
-                  color: Colors.white,
+              GestureDetector(
+                onTap: () {
+                  // Handle press event here
+                  // Add your desired functionality
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => NotificationScreen(),
+                    ),
+                  );
+                  // print('Container pressed!');
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue[600],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: EdgeInsets.all(12),
+                  child: Icon(
+                    Icons.notifications,
+                    color: Colors.white,
+                  ),
                 ),
               )
+
             ],
           ),
         ),
@@ -92,6 +106,11 @@ class _DashboardState extends State<Dashboard> {
                         ElevatedButton(
                           onPressed: () {
                             // Button Face Recognition action
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => UploadAndViewImages(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blue[800],
@@ -114,35 +133,35 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () {
-                             Navigator.of(context).pop();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>  UploadAndViewImages()));
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue[800],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            minimumSize: Size(180, 150),
-                          ),
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.pin,
-                                size: 40,
-                                color: Colors.white,
-                              ),
-                              Text(
-                                'PIN Code',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // ElevatedButton(
+                        //   onPressed: () {
+
+                        //      Navigator.of(context).pop();
+                        //       Navigator.push(
+                        //         context,
+                        //         MaterialPageRoute(
+
+                        //     // Button Change password action
+                        //     Navigator.of(context).pushReplacement(
+                        //       MaterialPageRoute(
+                        //         builder: (context) => ChangePasswordScreen(),
+                        //     ),
+                        //     minimumSize: Size(180, 150),
+                        //   ),
+                        //   child: Column(
+                        //     children: [
+                        //       Icon(
+                        //         Icons.pin,
+                        //         size: 40,
+                        //         color: Colors.white,
+                        //       ),
+                        //       Text(
+                        //         'PIN Code',
+                        //         style: TextStyle(color: Colors.white),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                     Row(
