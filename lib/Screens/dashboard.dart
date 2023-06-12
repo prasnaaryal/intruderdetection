@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intruderdetection/Screens/Notification.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
+import 'package:intruderdetection/Screens/changepin.dart';
+import 'package:intruderdetection/Screens/photoupload.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -57,17 +60,30 @@ class _DashboardState extends State<Dashboard> {
               //     ),
               //   )),
               // ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.blue[600],
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: EdgeInsets.all(12),
-                child: Icon(
-                  Icons.notifications,
-                  color: Colors.white,
+              GestureDetector(
+                onTap: () {
+                  // Handle press event here
+                  // Add your desired functionality
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => NotificationScreen(),
+                    ),
+                  );
+                  // print('Container pressed!');
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue[600],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: EdgeInsets.all(12),
+                  child: Icon(
+                    Icons.notifications,
+                    color: Colors.white,
+                  ),
                 ),
               )
+
             ],
           ),
         ),
@@ -91,6 +107,11 @@ class _DashboardState extends State<Dashboard> {
                         ElevatedButton(
                           onPressed: () {
                             // Button Face Recognition action
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => UploadAndViewImages(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blue[800],
@@ -116,6 +137,11 @@ class _DashboardState extends State<Dashboard> {
                         ElevatedButton(
                           onPressed: () {
                             // Button Change password action
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => ChangePasswordScreen(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Colors.blue[800],
