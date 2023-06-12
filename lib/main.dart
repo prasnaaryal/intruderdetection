@@ -1,6 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:google_fonts/google_fonts.dart';
+=======
+import 'package:intruderdetection/Screens/changepin.dart';
+>>>>>>> changepin
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
@@ -71,9 +75,13 @@ class MyApp extends StatelessWidget {
           );
         }),
       ),
+<<<<<<< HEAD
 
       // home: Dashboard(),
       // home: UploadAndViewImages(),
+=======
+      home: ChangePasswordScreen(),
+>>>>>>> changepin
     );
   }
 }
