@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:intruderdetection/Screens/dashboard.dart';
@@ -7,6 +8,9 @@ import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/global_ui_viewmodel.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+=======
+import 'package:intruderdetection/Screens/dashboard.dart';
+>>>>>>> login_with_biometrics
 
 import 'package:provider/provider.dart';
 
@@ -77,6 +81,10 @@ class MyApp extends StatelessWidget {
           }
         ),
       ),
+<<<<<<< HEAD
+=======
+      home: Dashboard(),
+>>>>>>> login_with_biometrics
     );
   }
 }
