@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/user_model.dart';
 import '../repositories/auth_repositories.dart';
-
 import '../services/firebase_service.dart';
-
 
 class AuthViewModel with ChangeNotifier {
   User? _user = FirebaseService.firebaseAuth.currentUser;
@@ -14,8 +12,7 @@ class AuthViewModel with ChangeNotifier {
   User? get user => _user;
 
   UserModel? _loggedInUser;
-  UserModel? get loggedInUser =>_loggedInUser;
-
+  UserModel? get loggedInUser => _loggedInUser;
 
   Future<void> login(String email, String password) async {
     try {
@@ -38,19 +35,17 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-
-  // Future<void> register(UserModel user) async {
-  //   try {
-  //     var response = await AuthRepository().register(user);
-  //     _user = response!.user;
-  //     _loggedInUser = await AuthRepository().getUserDetail(_user!.uid);
-  //     notifyListeners();
-  //   } catch (err) {
-  //     AuthRepository().logout();
-  //     rethrow;
-  //   }
-  // }
-
+  Future<void> register(UserModel user) async {
+    try {
+      var response = await AuthRepository().register(user);
+      _user = response!.user;
+      _loggedInUser = await AuthRepository().getUserDetail(_user!.uid);
+      notifyListeners();
+    } catch (err) {
+      AuthRepository().logout();
+      rethrow;
+    }
+  }
 
   Future<void> checkLogin() async {
     try {
@@ -63,14 +58,13 @@ class AuthViewModel with ChangeNotifier {
     }
   }
 
-  Future<void> logout() async{
-    try{
+  Future<void> logout() async {
+    try {
       await AuthRepository().logout();
       _user = null;
       notifyListeners();
-    }catch(e){
+    } catch (e) {
       rethrow;
     }
   }
-
 }

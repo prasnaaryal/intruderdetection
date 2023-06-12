@@ -143,7 +143,6 @@ class _DashboardState extends State<Dashboard> {
                     Row(
                       children: [
                         ButtonBar(
-<<<<<<< HEAD
                           alignment: MainAxisAlignment.start,
                           buttonPadding: EdgeInsets.symmetric(horizontal: 16),
                           children: [
@@ -204,8 +203,6 @@ class _DashboardState extends State<Dashboard> {
                     Row(
                       children: [
                         ButtonBar(
-=======
->>>>>>> login_with_biometrics
                           // alignment: MainAxisAlignment.spaceBetween,
                           buttonPadding: EdgeInsets.symmetric(horizontal: 16),
                           children: [
@@ -213,11 +210,7 @@ class _DashboardState extends State<Dashboard> {
                               onPressed: () {
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-<<<<<<< HEAD
-                                    builder: (context) => Dashboard(),
-=======
                                     builder: (context) => Fingerprint(),
->>>>>>> login_with_biometrics
                                   ),
                                 );
                               },

@@ -15,9 +15,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
-  // TextEditingController _nameController = TextEditingController();
-  // TextEditingController _usernameController = TextEditingController();
-
   bool _obscureTextPassword = true;
   bool _obscureTextPasswordConfirm = true;
 
@@ -163,7 +160,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         onTap: () {
                           setState(() {
                             _obscureTextPasswordConfirm =
-                            !_obscureTextPasswordConfirm;
+                                !_obscureTextPasswordConfirm;
                           });
                         },
                         child: Icon(
@@ -184,13 +181,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                          MaterialStateProperty.all(Colors.pink.shade100),
+                              MaterialStateProperty.all(Colors.pink.shade100),
                           shape:
-                          MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  side: BorderSide(
-                                      color: Colors.pink.shade200))),
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      side: BorderSide(
+                                          color: Colors.pink.shade200))),
                           padding: MaterialStateProperty.all<EdgeInsets>(
                               EdgeInsets.symmetric(vertical: 20)),
                         ),

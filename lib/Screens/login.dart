@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:provider/provider.dart';
 
 import '../viewmodel/auth_viewmodel.dart';
@@ -153,13 +154,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                          MaterialStateProperty.all(Colors.blue[800]),
+                              MaterialStateProperty.all(Colors.blue[800]),
                           shape:
-                          MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  side: BorderSide(
-                                      color: Colors.blue.shade400))),
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                      side: BorderSide(
+                                          color: Colors.blue.shade400))),
                           padding: MaterialStateProperty.all<EdgeInsets>(
                               EdgeInsets.symmetric(vertical: 20)),
                         ),
@@ -173,6 +174,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   SizedBox(
                     height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Login with biometrics? ",
+                        style: TextStyle(color: Colors.grey.shade800),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => Fingerprint(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Login with Biometrics",
+                            style: TextStyle(color: Colors.pink),
+                          ))
+                    ],
                   ),
                 ],
               ),

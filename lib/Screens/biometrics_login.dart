@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
+import 'package:intruderdetection/Screens/login.dart';
 import 'package:local_auth/local_auth.dart';
 
 class Fingerprint extends StatefulWidget {
@@ -208,6 +209,30 @@ class _FingerprintState extends State<Fingerprint> {
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Go back to login page? ",
+                        style: TextStyle(color: Colors.grey.shade800),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Login",
+                            style: TextStyle(color: Colors.pink),
+                          ))
+                    ],
                   ),
                 ],
               ),
