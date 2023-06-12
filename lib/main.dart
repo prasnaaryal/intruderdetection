@@ -67,10 +67,10 @@ class MyApp extends StatelessWidget {
               // or simply save your changes to "hot reload" in a Flutter IDE).
               // Notice that the counter didn't reset back to zero; the application
               // is not restarted.g
-              primarySwatch: Colors.grey,
+              primarySwatch: Colors.blue,
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/login",
+            initialRoute: "/biometrics",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),

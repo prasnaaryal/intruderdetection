@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:password_field_validator/password_field_validator.dart';
+
+import 'dashboard.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({Key? key}) : super(key: key);
@@ -27,9 +28,17 @@ class _ChangePasswordScreen extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Dashboard()));
+          },
+        ),
         centerTitle: true,
         title: Text('Change your Password'),
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: Colors.blue[800],
       ),
       body: Container(
         color: Color(0xFFD6D6D6),
@@ -97,7 +106,7 @@ class _ChangePasswordScreen extends State<ChangePasswordScreen> {
                           fillColor: Colors.grey[350],
                           prefixIcon: Icon(
                             Icons.lock,
-                            color: Colors.deepOrange,
+                            color: Colors.blue[800],
                             size: 25,
                           ),
                           hintText: "Enter your previous Password...",
@@ -150,14 +159,14 @@ class _ChangePasswordScreen extends State<ChangePasswordScreen> {
                           }
                         },
                         keyboardType: TextInputType.emailAddress,
-                        cursorColor: Colors.deepOrange,
+                        cursorColor: Colors.blue[800],
                         cursorHeight: 25,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.grey[350],
                           prefixIcon: Icon(
                             Icons.lock,
-                            color: Colors.deepOrange,
+                            color: Colors.blue[800],
                             size: 25,
                           ),
                           hintText: "Enter your new Password",
@@ -194,15 +203,16 @@ class _ChangePasswordScreen extends State<ChangePasswordScreen> {
                         validator: (value) {
                           if (value != null || value!.isEmpty) {
                             final bool isValid = PasswordFieldValidator(
-                                minLength: 6,
-                                uppercaseCharCount: 1,
-                                lowercaseCharCount: 1,
-                                numericCharCount: 1,
-                                specialCharCount: 1,
-                                defaultColor: Colors.black54,
-                                successColor: Colors.blue,
-                                failureColor: Colors.red,
-                                controller: confirmnewpasswordController) as bool;
+                                    minLength: 6,
+                                    uppercaseCharCount: 1,
+                                    lowercaseCharCount: 1,
+                                    numericCharCount: 1,
+                                    specialCharCount: 1,
+                                    defaultColor: Colors.black54,
+                                    successColor: Colors.blue,
+                                    failureColor: Colors.red,
+                                    controller: confirmnewpasswordController)
+                                as bool;
                             // .validate(passwordController.text.trim());
                             if (!isValid) {
                               return "Invalid Password";
@@ -210,14 +220,14 @@ class _ChangePasswordScreen extends State<ChangePasswordScreen> {
                           }
                         },
                         keyboardType: TextInputType.emailAddress,
-                        cursorColor: Colors.deepOrange,
+                        cursorColor: Colors.blue[800],
                         cursorHeight: 25,
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.grey[350],
                           prefixIcon: Icon(
                             Icons.lock,
-                            color: Colors.deepOrange,
+                            color: Colors.blue[800],
                             size: 25,
                           ),
                           hintText: "Verify your Password",
@@ -249,7 +259,7 @@ class _ChangePasswordScreen extends State<ChangePasswordScreen> {
             // Add your code for logging out here
           },
           style: ElevatedButton.styleFrom(
-            primary: Colors.deepOrange,
+            primary: Colors.blue[800],
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(28),
             ),

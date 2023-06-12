@@ -94,14 +94,15 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
           child: Scaffold(
               appBar: AppBar(
                 leading: IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ViewUploadedImages()));
-                    },
-                    icon: Icon(Icons.arrow_back)),
+                  icon: Icon(Icons.arrow_back),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UploadAndViewImages()));
+                  },
+                ),
                 title: Text(
                   "Add Image",
                   style: TextStyle(color: Colors.black),
@@ -202,7 +203,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                               }
                             }),
                             child: Text(
-                              "Sign up",
+                              "Add",
                               style: TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'roboto',

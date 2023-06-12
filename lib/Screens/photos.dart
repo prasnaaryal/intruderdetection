@@ -103,7 +103,7 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.blue[800],
         onPressed: () {
           Navigator.push(
             context,
@@ -112,6 +112,10 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
             ),
           );
         },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }

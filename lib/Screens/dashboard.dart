@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intruderdetection/Screens/Notification.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
+import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/photos.dart';
 
 class Dashboard extends StatefulWidget {
@@ -82,7 +83,6 @@ class _DashboardState extends State<Dashboard> {
                   ),
                 ),
               )
-
             ],
           ),
         ),
@@ -133,35 +133,36 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                         ),
-                        // ElevatedButton(
-                        //   onPressed: () {
-
-                        //      Navigator.of(context).pop();
-                        //       Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(
-
-                        //     // Button Change password action
-                        //     Navigator.of(context).pushReplacement(
-                        //       MaterialPageRoute(
-                        //         builder: (context) => ChangePasswordScreen(),
-                        //     ),
-                        //     minimumSize: Size(180, 150),
-                        //   ),
-                        //   child: Column(
-                        //     children: [
-                        //       Icon(
-                        //         Icons.pin,
-                        //         size: 40,
-                        //         color: Colors.white,
-                        //       ),
-                        //       Text(
-                        //         'PIN Code',
-                        //         style: TextStyle(color: Colors.white),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
+                        ElevatedButton(
+                          onPressed: () {
+                            // Button Face Recognition action
+                            Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) => ChangePasswordScreen(),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue[800],
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            minimumSize: Size(180, 150),
+                          ),
+                          child: Column(
+                            children: [
+                              Icon(
+                                Icons.pin_outlined,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                'Face Recognition',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                     Row(
@@ -171,9 +172,7 @@ class _DashboardState extends State<Dashboard> {
                           buttonPadding: EdgeInsets.symmetric(horizontal: 16),
                           children: [
                             ElevatedButton(
-                              onPressed: () {
-                                // Button Face Recognition action
-                              },
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.blue[800],
                                 shape: RoundedRectangleBorder(
@@ -189,16 +188,14 @@ class _DashboardState extends State<Dashboard> {
                                     color: Colors.white,
                                   ),
                                   Text(
-                                    'Face Recognition',
+                                    'Button A',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: () {
-                                // Button Change password action
-                              },
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.blue[800],
                                 shape: RoundedRectangleBorder(
@@ -214,7 +211,7 @@ class _DashboardState extends State<Dashboard> {
                                     color: Colors.white,
                                   ),
                                   Text(
-                                    'PIN Code',
+                                    'Button B',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
@@ -234,7 +231,7 @@ class _DashboardState extends State<Dashboard> {
                               onPressed: () {
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                    builder: (context) => Dashboard(),
+                                    builder: (context) => Fingerprint(),
                                   ),
                                 );
                               },
