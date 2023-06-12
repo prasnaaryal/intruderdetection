@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/login.dart';
@@ -7,6 +8,10 @@ import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/global_ui_viewmodel.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
+=======
+
+import 'Screens/photoupload.dart';
+>>>>>>> face-recognition
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -71,8 +76,12 @@ class MyApp extends StatelessWidget {
           );
         }),
       ),
+<<<<<<< HEAD
 
       // home: Dashboard(),
+=======
+      home: UploadAndViewImages(),
+>>>>>>> face-recognition
     );
   }
 }

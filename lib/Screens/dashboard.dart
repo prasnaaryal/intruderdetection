@@ -210,7 +210,7 @@ class _DashboardState extends State<Dashboard> {
                               onPressed: () {
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                    builder: (context) => Fingerprint(),
+                                    builder: (context) => Dashboard(),
                                   ),
                                 );
                               },
