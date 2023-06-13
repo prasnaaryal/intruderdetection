@@ -138,7 +138,7 @@ class _DashboardState extends State<Dashboard> {
                             // Button Face Recognition action
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => ChangePasswordScreen(),
+                                builder: (context) => Changepassword(),
                               ),
                             );
                           },
