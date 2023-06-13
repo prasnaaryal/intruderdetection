@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/uploadImage.dart';
+import 'package:intruderdetection/models/faces.dart';
+import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 class UploadAndViewImages extends StatefulWidget {
   const UploadAndViewImages({Key? key}) : super(key: key);
@@ -38,110 +41,110 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
     }
   }
 
-  // Future<void> _viewUploadedImages() async {
-  //   final storage = FirebaseStorage.instance;
-  //   final storageRef = storage.ref().child('images');
+  late FaceViewModel faceViewModel;
+  late  List<String> imageUrls;
 
-  //   try {
-  //     final listResult = await storageRef.listAll();
-  //     final imageUrls = await Future.wait(
-  //       listResult.items.map((ref) => ref.getDownloadURL()),
-  //     );
 
-  //     setState(() {
-  //       _uploadedImageUrls = imageUrls;
-  //     });
 
-  //     Navigator.push(
-  //       context,
-  //       MaterialPageRoute(
-  //         builder: (context) =>
-  //             ViewUploadedImages(imageUrls: _uploadedImageUrls),
-  //       ),
-  //     );
-  //   } catch (error) {
-  //     print('Error fetching uploaded images: $error');
-  //   }
-  // }
+
 
   @override
   void initState() {
+    faceViewModel = Provider.of<FaceViewModel>(context, listen: false);
+   // fetchAndPrintUrls();
     super.initState();
     Firebase.initializeApp();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Dashboard()));
+   
+    return  Consumer<FaceViewModel>(
+    builder: (context, faceVM, child) {
+      return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Dashboard()),
+              );
+            },
+          ),
+          title: Center(child: Text('Known Faces')),
+        ),
+        body: ListView.builder(
+          itemCount: faceVM.allFace.length,
+          itemBuilder: (BuildContext context, int index) {
+            Face face = faceVM.allFace[index];
+            return ListTile(
+              leading: Image.network(face.imageurl!),
+              title: Text(face.name!),
+            );
           },
         ),
-        title: Text('Known Faces'),
-      ),
-      body: ListView(
-        children: [
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (_image != null)
-                  Image.file(
-                    _image!,
-                    height: 200,
-                  ),
-                SizedBox(height: 10),
-                SizedBox(height: 10),
-              ],
-            ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blue[800],
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddKnowFaces(),
+              ),
+            );
+          },
+          child: Icon(
+            Icons.add,
+            color: Colors.white,
           ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.blue[800],
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddKnowFaces(),
-            ),
-          );
-        },
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
         ),
-      ),
-    );
+      );
+    },
+  );
   }
 }
 
-class ViewUploadedImages extends StatefulWidget {
-// final List<String> imageUrls;
+// @override
+//   Widget build(BuildContext context) {
+//     return Consumer<FaceViewModel> (
+//        builder:(context, faceVM, child){
+//         return Scaffold(
+//           appBar: AppBar(
+//             leading: IconButton(
+//               icon: Icon(Icons.arrow_back),
+//               onPressed: () {
+//                 Navigator.pop(context);
+//                 Navigator.push(
+//                     context, MaterialPageRoute(builder: (context) => Dashboard()));
+//               },
+//             ),
+//             title: Center(child: Text('Known Faces')),
+//           ),
+//           body:  ListView(children: [
+//                   ...faceVM.allFace.map((e) => ListTile(
+//                     leading: Image.network(e.imageurl!),
+//                     title: Text(e.name!),
 
-  @override
-  _ViewUploadedImagesState createState() => _ViewUploadedImagesState();
-}
-
-class _ViewUploadedImagesState extends State<ViewUploadedImages> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        //     appBar: AppBar(
-        //       title: Text('Uploaded Images'),
-        //     ),
-        //     body: ListView.builder(
-        //       itemCount: widget.imageUrls.length,
-        //       itemBuilder: (context, index) {
-        //         final imageUrl = widget.imageUrls[index];
-        //         return Image.network(imageUrl);
-        //       },
-        //     ),
-        );
-  }
-}
+//                   ))
+//                 ],),
+//           floatingActionButton: FloatingActionButton(
+//             backgroundColor: Colors.blue[800],
+//             onPressed: () {
+//               Navigator.push(
+//                 context,
+//                 MaterialPageRoute(
+//                   builder: (context) => AddKnowFaces(),
+//                 ),
+//               );
+//             },
+//             child: Icon(
+//               Icons.add,
+//               color: Colors.white,
+//             ),
+//           ),
+//         );
+//       }
+//     );
+//   }

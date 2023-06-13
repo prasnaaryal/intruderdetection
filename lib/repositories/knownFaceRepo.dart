@@ -18,7 +18,7 @@ class FaceRepo{
   Future<void> addFace({required Face face}) async {
     try {
       var docref = faceRef.doc();
-      face.name=docref.id;
+      
       await docref.set(face);
     } catch (err) {
       rethrow;
@@ -34,7 +34,45 @@ class FaceRepo{
     print("iamdownlodedurl $downoladUrl");
     return downoladUrl;
   }
+  
+  
+  Future<List<String>> downloadUrlsFromFolder(String folderPath) async {
+    List<String> imageUrls = [];
 
+    try {
+      final Reference folderRef = storage.ref().child("faces");
+      final ListResult result = await folderRef.listAll();
+      final List<Reference> files = result.items;
+
+      final List<Future<String>> downloadURLs =
+          files.map((Reference fileRef) => fileRef.getDownloadURL()).toList();
+      final List<String> resolvedUrls = await Future.wait(downloadURLs);
+
+      imageUrls.addAll(resolvedUrls);
+    } catch (error) {
+      // Handle error appropriately
+      print('Error fetching image URLs: $error');
+    }
+
+    return imageUrls;
+  }
+
+   String getImageNameFromUrl(String imageUrl) {
+    Uri uri = Uri.parse(imageUrl);
+    String imagePath = uri.path;
+    String imageName = imagePath.substring(imagePath.lastIndexOf('/') + 1);
+    return imageName;
+  }
+
+  Future<List<QueryDocumentSnapshot<Face>>> getKnownFaces()  async{
+     try{
+      final response = await faceRef.get();
+      var faces = response.docs;
+      return faces;
+     }catch(err){
+      rethrow;
+     }
+  }
       
   
 

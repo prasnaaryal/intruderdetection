@@ -7,7 +7,7 @@ class FaceViewModel with ChangeNotifier{
   FaceRepo _taskRepo = FaceRepo();
   
   List<Face> _allFace =[];
-  List<Face> get allTask => _allFace;
+  List<Face> get allFace => _allFace;
   
   
 
@@ -22,25 +22,36 @@ class FaceViewModel with ChangeNotifier{
     }
   }
 
+  
+  Future<List<String>> fetchImageUrls(String folderPath) async {
+    return FaceRepo().downloadUrlsFromFolder(folderPath);
+  }
 
-  // Future<List<Task>> getTask(String user_id) async{
-  //    _allTask=[];
-  //     try{
-  //       print(user_id);
-  //       var response = await _taskRepo.getTask(user_id);
-  //       for(var element in response){
-  //         _allTask.add(element.data());
-  //       }
-  //       notifyListeners();
-  //     }catch(e){
-  //       print(e);
-  //       _allTask=[];
-  //       rethrow;
-  //     }
-  //     notifyListeners();
-  //     return _allTask;
+  
 
-  // }
+  String getImageNameFromUrl(String imageUrl) {
+    return FaceRepo().getImageNameFromUrl(imageUrl);
+  }
+
+  Future<List<Face>> getFace() async{
+     _allFace=[];
+      try{
+        
+        var response = await FaceRepo().getKnownFaces();
+        for(var element in response){
+          _allFace.add(element.data());
+        }
+        notifyListeners();
+      }catch(e){
+        print("error in view model $e");
+        
+        _allFace=[];
+        rethrow;
+      }
+      notifyListeners();
+      return _allFace;
+
+  }
 
   // Future<void> deleteTask(String id, String userId ) async{
     

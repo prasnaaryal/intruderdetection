@@ -74,7 +74,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
     try {
       await _face
           .addFace(Face(
-              name: face_name.text, imagepath: imagePath, imageurl: imageUrl))
+              name: name, imagepath: imagePath, imageurl: imageUrl))
           .then((value) => null)
           .catchError((e) {
         ScaffoldMessenger.of(context)
@@ -148,7 +148,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                           controller: face_name,
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
-                              return "username is required";
+                              return "Face Name is required";
                             } else {
                               return null;
                             }
