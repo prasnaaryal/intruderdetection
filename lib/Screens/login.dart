@@ -142,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () {
-                          Navigator.of(context).pushNamed("/forget-pin");
+                          Navigator.of(context).pushNamed("/forgetpin");
                         },
                         child: Text(
                           "Forgot PIN?",

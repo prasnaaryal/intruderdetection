@@ -45,27 +45,27 @@ class _ChangepasswordState extends State<Changepassword> {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: Colors.black26,
-        content: Text("Successfully Changed Password! Login Again to Continue"),
+        content: Text("Successfully Changed Pin! Login Again to Continue"),
       ));
     } on FirebaseAuthException catch(e){
 
-      if (e.code == "wrong-password") {
-        print("Old password donot match");
+      if (e.code == "wrong-pin") {
+        print("Old pin donot match");
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
             content: Text(
-              "Wrong Password for this User",
+              "Wrong Pin for this User",
               style: TextStyle(fontSize: 19),
             )));
 
       }
 
-      else if (e.code == "password already used") {
-        print("Password Already used");
+      else if (e.code == "pin already used") {
+        print("Pin Already used");
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: Colors.red,
             content: Text(
-              "Password already used",
+              "Pin already used",
               style: TextStyle(fontSize: 19),
             )));
       }
@@ -91,7 +91,7 @@ class _ChangepasswordState extends State<Changepassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context,
-          title: "Change Password",
+          title: "Change Pin",
           actions: [],
           leading: CustomBackButton(tapEvent: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
@@ -111,7 +111,7 @@ class _ChangepasswordState extends State<Changepassword> {
                   child: Column(
                     children: [
                       Container(
-                        child: Text("Your New password must not be the old passwords you used",
+                        child: Text("Your New pin must not be the old pin you used",
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.blueGrey
@@ -127,10 +127,11 @@ class _ChangepasswordState extends State<Changepassword> {
                         ),
                         child: TextFormField(
                           obscureText: _obsecured,
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               // label: Text("Password"),
-                              hintText: " Current Password",
+                              hintText: " Current Pin",
                               prefixIcon: Icon(Icons.star),
                               suffixIcon: IconButton(
                                   onPressed: () {
@@ -144,7 +145,7 @@ class _ChangepasswordState extends State<Changepassword> {
                           controller: currentController,
                           validator: ((value) {
                             if (value == null || value.isEmpty) {
-                              return "Please Enter Password";
+                              return "Please Enter Pin";
                             }
                             return null;
                           }),
@@ -161,10 +162,11 @@ class _ChangepasswordState extends State<Changepassword> {
                         ),
                         child: TextFormField(
                           obscureText: _obsecured,
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               // label: Text("Password"),
-                              hintText: " New Password",
+                              hintText: " New Pin",
                               prefixIcon: Icon(Icons.star),
                               suffixIcon: IconButton(
                                   onPressed: () {
@@ -178,7 +180,7 @@ class _ChangepasswordState extends State<Changepassword> {
                           controller: newController,
                           validator: ((value) {
                             if (value == null || value.isEmpty) {
-                              return "    Please Enter Password";
+                              return "    Please Enter Pin";
                             }
                             return null;
                           }),
@@ -195,10 +197,11 @@ class _ChangepasswordState extends State<Changepassword> {
                         ),
                         child: TextFormField(
                           obscureText: _obsecured,
+                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               // label: Text("Email"),
-                              hintText: "Confirm Password",
+                              hintText: "Confirm Pin",
                               prefixIcon: Icon(Icons.star),
                               suffixIcon: IconButton(
                                 onPressed: () {
@@ -213,7 +216,7 @@ class _ChangepasswordState extends State<Changepassword> {
                           controller: confirmController,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "     Please Enter Password";
+                              return "     Please Enter Pin";
                             }
                             return null;
                           },
@@ -240,7 +243,7 @@ class _ChangepasswordState extends State<Changepassword> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         )),
-                    child: Text("Change Password",
+                    child: Text("Change Pin",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold
