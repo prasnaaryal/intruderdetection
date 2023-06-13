@@ -29,7 +29,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           return AlertDialog(
 //has to be valid email address for receiving the email
             content:
-                Text('Password reset link has been sent. Check your email.'),
+                Text('Pin reset link has been sent. Check your email.'),
           );
         },
       );
@@ -70,7 +70,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Container(
             padding: EdgeInsets.only(top: 50, bottom: 20),
-            child: Text("Forgot Password?",
+            child: Text("Forgot Pin?",
                 style: TextStyle(
                   fontSize: 32,
                   color: Colors.white,
