@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intruderdetection/Screens/Register.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/forgetpin.dart';
@@ -79,6 +80,8 @@ class MyApp extends StatelessWidget {
               "/addFace": (BuildContext context) => AddKnowFaces(),
               "/uploadandview": (BuildContext context) => UploadAndViewImages(),
               "/forgetpin": (BuildContext context) => ForgotPassword(),
+              "/register": (BuildContext context) => RegisterScreen(),
+              
 
             },
           );

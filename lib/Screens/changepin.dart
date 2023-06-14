@@ -3,6 +3,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/customs/app_bar.dart';
 import 'package:intruderdetection/customs/custom_back_button.dart';
@@ -94,7 +95,7 @@ class _ChangepasswordState extends State<Changepassword> {
           title: "Change Pin",
           actions: [],
           leading: CustomBackButton(tapEvent: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
 
           })
       ),

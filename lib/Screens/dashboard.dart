@@ -127,7 +127,7 @@ class _DashboardState extends State<Dashboard> {
                                 color: Colors.white,
                               ),
                               Text(
-                                'Face Recognition',
+                                'Change Pin',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
