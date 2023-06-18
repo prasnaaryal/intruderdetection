@@ -39,6 +39,7 @@ class FaceViewModel with ChangeNotifier{
         
         var response = await FaceRepo().getKnownFaces();
         for(var element in response){
+          print("response ${element.data()}");
           _allFace.add(element.data());
         }
         notifyListeners();
@@ -53,27 +54,17 @@ class FaceViewModel with ChangeNotifier{
 
   }
 
-  // Future<void> deleteTask(String id, String userId ) async{
-    
-  
-  //   try{
-  //     await TaskRepo().deleteTask(id).then((value) =>_allTask= TaskRepo().getTask(userId) as List<Task>);
-  //     notifyListeners();
-  //   } catch(err){
-  //     rethrow;
-  //   }
-  // }
+  Future<void> deleteFace(String id) async{
+    try{
+      print("delete face viewmodel");
+      await FaceRepo().deleteFace(id);
+      notifyListeners();
+    } catch(err){
+      print("face delete repo error $err");
+      rethrow;
+    }
+  }
 
-  // Future<void> updateTask(Task task) async{
-  //   var doc = task.id;
-  //   try{
-  //     task.status=!task.status;
-  //     await TaskRepo().updateTask(task);
-  //     notifyListeners();
-  //   }catch(e){
-  //     rethrow;
-  //   }
-  // }
 
 
 

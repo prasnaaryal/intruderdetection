@@ -74,7 +74,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
     try {
       await _face
           .addFace(Face(
-              name: name, imagepath: imagePath, imageurl: imageUrl))
+              name: name, imagepath: imagePath, imageurl: imageUrl,docId: ""))
           .then((value) => null)
           .catchError((e) {
         ScaffoldMessenger.of(context)

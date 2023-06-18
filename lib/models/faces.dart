@@ -14,31 +14,37 @@ class Face {
     String? name;
     String? imagepath;
     String? imageurl;
+    String? docId;
 
     Face({
         required this.name,
         required this.imagepath,
         required this.imageurl,
+        required this.docId,
     });
 
     factory Face.fromJson(Map<String, dynamic> json) => Face(
         name: json["name"],
         imagepath: json["imagepath"],
         imageurl: json["imageurl"],
+        docId: json["docId"],
     );
 
     Map<String, dynamic> toJson() => {
         "name": name,
         "imagepath": imagepath,
         "imageurl": imageurl,
+        "docId": docId,
     };
 
-     factory Face.fromFirebaseSnapshot(DocumentSnapshot<Map<String, dynamic>> json) => Face(
+      
+    factory Face.fromFirebaseSnapshot(DocumentSnapshot<Map<String, dynamic>> json) => Face(
    
-    name:json["name"],
-    imagepath:json["imagepath"], 
+    docId:json["docId"],
+    name:json["name"], 
+    imagepath: json["imagepath"],
     imageurl: json["imageurl"],
-  
+    
  
   );
 }

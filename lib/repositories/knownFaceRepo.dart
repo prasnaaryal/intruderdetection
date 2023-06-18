@@ -18,7 +18,7 @@ class FaceRepo{
   Future<void> addFace({required Face face}) async {
     try {
       var docref = faceRef.doc();
-      
+      face.docId=docref.id;
       await docref.set(face);
     } catch (err) {
       rethrow;
@@ -73,6 +73,17 @@ class FaceRepo{
       rethrow;
      }
   }
+  
+  Future<void> deleteFace(String id) async{
+     try{
+      await faceRef.doc(id).delete();
+      print("delete face repo riched");
+     }catch(e){
+      print("face delete repo error $e");
+      rethrow;
+     }
+  }
+
       
   
 

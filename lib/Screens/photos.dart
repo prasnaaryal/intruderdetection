@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
+import 'package:intruderdetection/Screens/faceDetails.dart';
 import 'package:intruderdetection/Screens/uploadImage.dart';
 import 'package:intruderdetection/models/faces.dart';
 import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
@@ -17,29 +18,8 @@ class UploadAndViewImages extends StatefulWidget {
 }
 
 class _UploadAndViewImagesState extends State<UploadAndViewImages> {
-  final ImagePicker _picker = ImagePicker();
-  File? _image;
-  List<String> _uploadedImageUrls = [];
+ 
 
-  Future<void> _getImageFromCamera() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.camera);
-    if (pickedFile != null) {
-      final imageFile = File(pickedFile.path);
-      setState(() {
-        _image = imageFile;
-      });
-    }
-  }
-
-  Future<void> _getImageFromGallery() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      final imageFile = File(pickedFile.path);
-      setState(() {
-        _image = imageFile;
-      });
-    }
-  }
 
   late FaceViewModel faceViewModel;
   late  List<String> imageUrls;
@@ -51,7 +31,12 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
   @override
   void initState() {
     faceViewModel = Provider.of<FaceViewModel>(context, listen: false);
-   // fetchAndPrintUrls();
+    try{
+    print("faces get try block");
+    faceViewModel.getFace(); 
+    }catch(e){
+      print("getface error $e");
+    }
     super.initState();
     Firebase.initializeApp();
   }
@@ -73,15 +58,25 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
               );
             },
           ),
-          title: Center(child: Text('Known Faces')),
+          title:  Text('Known Faces'),
         ),
         body: ListView.builder(
           itemCount: faceVM.allFace.length,
           itemBuilder: (BuildContext context, int index) {
             Face face = faceVM.allFace[index];
+            print("face printed in model $face");
             return ListTile(
               leading: Image.network(face.imageurl!),
               title: Text(face.name!),
+              onTap: () {
+                  Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) =>  KnownFaceDetails(face.imageurl!,face.imagepath!,face.name!,face.docId!)),
+              );
+
+               
+              },
             );
           },
         ),
