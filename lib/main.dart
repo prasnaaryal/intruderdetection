@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intruderdetection/Screens/Register.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
+import 'package:intruderdetection/Screens/forgetpin.dart';
 import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/Services/notification_services.dart';
 
@@ -110,6 +112,10 @@ class MyApp extends StatelessWidget {
               "/biometrics": (BuildContext context) => Fingerprint(),
               "/addFace": (BuildContext context) => AddKnowFaces(),
               "/uploadandview": (BuildContext context) => UploadAndViewImages(),
+              "/forgetpin": (BuildContext context) => ForgotPassword(),
+              "/register": (BuildContext context) => RegisterScreen(),
+              
+
             },
           );
         }),

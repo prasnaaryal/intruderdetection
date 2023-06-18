@@ -1,441 +1,260 @@
+// ignore_for_file: unused_local_variable
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:password_field_validator/password_field_validator.dart';
+import 'package:intruderdetection/Screens/dashboard.dart';
+import 'package:intruderdetection/Screens/login.dart';
+import 'package:intruderdetection/customs/app_bar.dart';
+import 'package:intruderdetection/customs/custom_back_button.dart';
 
-import 'dashboard.dart';
 
-class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({Key? key}) : super(key: key);
+class Changepassword extends StatefulWidget {
+  const Changepassword ({Key? key}) : super(key: key);
 
   @override
-  State<ChangePasswordScreen> createState() => _ChangePasswordScreen();
+  _ChangepasswordState createState() => _ChangepasswordState();
 }
 
-class _ChangePasswordScreen extends State<ChangePasswordScreen> {
-  Widget divider() {
-    return Padding(
-      padding: const EdgeInsets.all(0.5),
-      child: Divider(
-        thickness: 1.5,
-      ),
-    );
+class _ChangepasswordState extends State<Changepassword> {
+  final _formKey = GlobalKey<FormState>();
+
+  bool _obsecured = true;
+
+  var current = "";
+  var newpassword = "";
+  var confirmpassword = "";
+
+  final currentController = TextEditingController();
+  final newController = TextEditingController();
+  final confirmController = TextEditingController();
+
+  void dispose() {
+    currentController.dispose();
+    newController.dispose();
+    confirmController.dispose();
+    super.dispose();
   }
 
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController newpasswordController = TextEditingController();
-  TextEditingController confirmnewpasswordController = TextEditingController();
+  final currenrUser = FirebaseAuth.instance.currentUser;
+
+  changePassword() async {
+    if (newController.text == confirmController.text)
+    try {
+      await currenrUser!.updatePassword(newController.text);
+      FirebaseAuth.instance.signOut();
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.black26,
+        content: Text("Successfully Changed Pin! Login Again to Continue"),
+      ));
+    } on FirebaseAuthException catch(e){
+
+      if (e.code == "wrong-pin") {
+        print("Old pin donot match");
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(
+              "Wrong Pin for this User",
+              style: TextStyle(fontSize: 19),
+            )));
+
+      }
+
+      else if (e.code == "pin already used") {
+        print("Pin Already used");
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.red,
+            content: Text(
+              "Pin already used",
+              style: TextStyle(fontSize: 19),
+            )));
+      }
+    } on Exception catch(e){
+        print(e.toString());
+    }
+    else {
+      print("Password and confirm Password does not match");
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            "Password and confirm Password does not match",
+            style: TextStyle(fontSize: 19),
+          )));
+    }
+  }
+
+  String radioClickedValue = "";
+  bool? checkBoxValue1 = false;
+  bool? checkBoxValue2 = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Dashboard()));
-          },
-        ),
-        centerTitle: true,
-        title: Text('Change your Password'),
-        backgroundColor: Colors.blue[800],
-      ),
-      body: Container(
-        color: Color(0xFFD6D6D6),
-        child: ListView(
-          children: [
-            colorTiles(),
-          ],
-        ),
-      ),
-      bottomNavigationBar: SubmitButtons(),
-    );
-  }
+      appBar: buildAppBar(context,
+          title: "Change Pin",
+          actions: [],
+          leading: CustomBackButton(tapEvent: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
 
-  Widget colorTiles() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 50),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(top: 20),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "Previous Password:",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 30),
-                    child: TextFormField(
-                        controller: passwordController,
-                        obscureText: true,
-                        validator: (value) {
-                          if (value != null || value!.isEmpty) {
-                            final bool isValid = PasswordFieldValidator(
-                                minLength: 6,
-                                uppercaseCharCount: 1,
-                                lowercaseCharCount: 1,
-                                numericCharCount: 1,
-                                specialCharCount: 1,
-                                defaultColor: Colors.black54,
-                                successColor: Colors.blue,
-                                failureColor: Colors.red,
-                                controller: passwordController) as bool;
-                            // .validate(passwordController.text.trim());
-                            if (!isValid) {
-                              return "Invalid Password";
-                            }
-                          }
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        cursorColor: Colors.deepOrange,
-                        cursorHeight: 25,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.grey[350],
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: Colors.blue[800],
-                            size: 25,
-                          ),
-                          hintText: "Enter your previous Password...",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide.none),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Colors.black38)),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-            divider(),
-            Container(
-              padding: EdgeInsets.only(top: 10),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "New Password:",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 30),
-                    child: TextFormField(
-                        controller: newpasswordController,
-                        obscureText: true,
-                        validator: (value) {
-                          if (value != null || value!.isEmpty) {
-                            final bool isValid = PasswordFieldValidator(
-                                minLength: 6,
-                                uppercaseCharCount: 1,
-                                lowercaseCharCount: 1,
-                                numericCharCount: 1,
-                                specialCharCount: 1,
-                                defaultColor: Colors.black54,
-                                successColor: Colors.blue,
-                                failureColor: Colors.red,
-                                controller: newpasswordController) as bool;
-                            // .validate(passwordController.text.trim());
-                            if (!isValid) {
-                              return "Invalid Password";
-                            }
-                          }
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        cursorColor: Colors.blue[800],
-                        cursorHeight: 25,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.grey[350],
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: Colors.blue[800],
-                            size: 25,
-                          ),
-                          hintText: "Enter your new Password",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide.none),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Colors.black38)),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-            divider(),
-            Container(
-              padding: EdgeInsets.only(top: 10),
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    "Confirm-Password:",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 30),
-                    child: TextFormField(
-                        controller: confirmnewpasswordController,
-                        obscureText: true,
-                        validator: (value) {
-                          if (value != null || value!.isEmpty) {
-                            final bool isValid = PasswordFieldValidator(
-                                    minLength: 6,
-                                    uppercaseCharCount: 1,
-                                    lowercaseCharCount: 1,
-                                    numericCharCount: 1,
-                                    specialCharCount: 1,
-                                    defaultColor: Colors.black54,
-                                    successColor: Colors.blue,
-                                    failureColor: Colors.red,
-                                    controller: confirmnewpasswordController)
-                                as bool;
-                            // .validate(passwordController.text.trim());
-                            if (!isValid) {
-                              return "Invalid Password";
-                            }
-                          }
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        cursorColor: Colors.blue[800],
-                        cursorHeight: 25,
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.grey[350],
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: Colors.blue[800],
-                            size: 25,
-                          ),
-                          hintText: "Verify your Password",
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide.none),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(30),
-                              borderSide: BorderSide(color: Colors.black38)),
-                        )),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          })
       ),
-    );
-  }
+      backgroundColor: Color.fromRGBO(205, 231, 238, 1.0),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Form(
+                key: _formKey,
+                child: Container(
+                  margin: EdgeInsets.all(30),
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Text("Your New pin must not be the old pin you used",
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.blueGrey
+                        ),
+                        ),
+                      ),
 
-  Widget SubmitButtons() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-      child: SizedBox(
-        width: double.infinity,
-        height: 70,
-        child: ElevatedButton(
-          onPressed: () {
-            // Add your code for logging out here
-          },
-          style: ElevatedButton.styleFrom(
-            primary: Colors.blue[800],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(28),
-            ),
-          ),
-          child: const Text(
-            "Submit",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 22,
-              color: Colors.white,
-            ),
+                      SizedBox(height: 30,),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white54,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: TextFormField(
+                          obscureText: _obsecured,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              // label: Text("Password"),
+                              hintText: " Current Pin",
+                              prefixIcon: Icon(Icons.star),
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _obsecured = !_obsecured;
+                                    });
+                                  },
+                                  icon: _obsecured
+                                      ? const Icon(Icons.visibility_off)
+                                      : Icon(Icons.visibility))),
+                          controller: currentController,
+                          validator: ((value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please Enter Pin";
+                            }
+                            return null;
+                          }),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        // margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white54,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: TextFormField(
+                          obscureText: _obsecured,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              // label: Text("Password"),
+                              hintText: " New Pin",
+                              prefixIcon: Icon(Icons.star),
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _obsecured = !_obsecured;
+                                    });
+                                  },
+                                  icon: _obsecured
+                                      ? const Icon(Icons.visibility_off)
+                                      : Icon(Icons.visibility))),
+                          controller: newController,
+                          validator: ((value) {
+                            if (value == null || value.isEmpty) {
+                              return "    Please Enter Pin";
+                            }
+                            return null;
+                          }),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        // margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.white54,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: TextFormField(
+                          obscureText: _obsecured,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              // label: Text("Email"),
+                              hintText: "Confirm Pin",
+                              prefixIcon: Icon(Icons.star),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _obsecured = !_obsecured;
+                                  });
+                                },
+                                icon: _obsecured
+                                    ? Icon(Icons.visibility_off)
+                                    : Icon(Icons.visibility),
+                              )),
+                          controller: confirmController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "     Please Enter Pin";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                  width: 230,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()){
+                        setState(() {
+                          newpassword = newController.text;
+                        });
+                        changePassword();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(93, 108, 137, 1.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        )),
+                    child: Text("Change Pin",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
+                    ),
+                  )),
+            ],
           ),
         ),
       ),
     );
   }
 }
-
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-//
-// class ChangePasswordScreen extends StatefulWidget {
-//   const ChangePasswordScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
-// }
-//
-// class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
-//   TextEditingController currentPassword = new TextEditingController();
-//   TextEditingController newPassword = new TextEditingController();
-//   TextEditingController confirmPassword = new TextEditingController();
-//   bool showPassword = false;
-//   bool checkedValue = true;
-//   @override
-//   Widget build(BuildContext context) {
-//     // var _isVisible = false;
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Change password"),
-//       ),
-//       body: SingleChildScrollView(
-//         child: Padding(
-//           padding: EdgeInsets.fromLTRB(10, 35, 10, 35),
-//           child: Column(
-//             children: [
-//               Text(
-//                 'Current Password',
-//                 style: TextStyle(
-//                   fontSize: 20,
-//                   fontWeight: FontWeight.normal,
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 35),
-//                 child: Container(
-//                   margin: EdgeInsets.all(10),
-//                   child: TextFormField(
-//                     controller: currentPassword,
-//                     validator: (String? value) {
-//                       if (value == null || value.isEmpty) {
-//                         return "current password is required";
-//                       } else if (value != "currentPassword") {
-//                         return "your current password did not match";
-//                       }
-//                       return null;
-//                     },
-//                     decoration: InputDecoration(
-//                         filled: true,
-//                         fillColor: Colors.grey[350],
-//                         border: OutlineInputBorder(
-//                           borderRadius: BorderRadius.circular(30),
-//                           borderSide: BorderSide.none,
-//                         ),
-//                         prefixIcon: Icon(Icons.lock),
-//                         hintText: "Enter your current password"),
-//                   ),
-//                 ),
-//               ),
-//               Text(
-//                 'New Password',
-//                 style: TextStyle(
-//                   fontSize: 20,
-//                   fontWeight: FontWeight.normal,
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 35.0),
-//                 child: Container(
-//                   margin: EdgeInsets.all(10),
-//                   child: TextFormField(
-//                     controller: newPassword,
-//                     validator: (String? value) {
-//                       if (value == null || value.isEmpty) {
-//                         return "new password is required";
-//                         // } else if (value != "email") {
-//                         //   return "Invalid email";
-//                       }
-//                       return null;
-//                     },
-//                     decoration: InputDecoration(
-//                         filled: true,
-//                         fillColor: Colors.grey[350],
-//                         border: OutlineInputBorder(
-//                           borderRadius: BorderRadius.circular(30),
-//                           borderSide: BorderSide.none,
-//                         ),
-//                         prefixIcon: Icon(Icons.lock),
-//                         hintText: "Enter your new password"),
-//                   ),
-//                 ),
-//               ),
-//               Text(
-//                 'Confirm Password',
-//                 style: TextStyle(
-//                   fontSize: 20,
-//                   fontWeight: FontWeight.normal,
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 35.0),
-//                 child: Container(
-//                   margin: EdgeInsets.all(10),
-//                   child: TextFormField(
-//                     controller: confirmPassword,
-//                     validator: (String? value) {
-//                       if (value == null || value.isEmpty) {
-//                         return "confirm password is required";
-//                       } else if (value != "createPassword") {
-//                         return "confirm password did not match with the created password";
-//                       }
-//                       return null;
-//                     },
-//                     decoration: InputDecoration(
-//                         filled: true,
-//                         fillColor: Colors.grey[350],
-//                         border: OutlineInputBorder(
-//                           borderRadius: BorderRadius.circular(30),
-//                           borderSide: BorderSide.none,
-//                         ),
-//                         prefixIcon: Icon(Icons.lock),
-//                         hintText: "confirm your password"),
-//                   ),
-//                 ),
-//               ),
-//               Padding(
-//                 padding: const EdgeInsets.all(8.0),
-//                 child: Container(
-//                   child: ElevatedButton(
-//                     onPressed: () {
-//                       Text("");
-//                       // Navigator.of(context).push(
-//                       //   MaterialPageRoute(
-//                       //     builder: (BuildContext context) => ProfileScreen(),
-//                       //   ),
-//                       // );
-//                     },
-//                     style: ElevatedButton.styleFrom(
-//                         backgroundColor: Colors.lightBlue,
-//                         fixedSize: const Size(150, 50),
-//                         shape: RoundedRectangleBorder(
-//                             borderRadius: BorderRadius.circular(50))),
-//                     child: Text(
-//                       "Submit",
-//                       style: TextStyle(
-//                         // fontWeight: FontWeight.bold,
-//                         fontSize: 18,
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

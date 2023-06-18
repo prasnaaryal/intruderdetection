@@ -127,7 +127,7 @@ class _DashboardState extends State<Dashboard> {
                                 color: Colors.white,
                               ),
                               Text(
-                                'Face Recognition',
+                                'Change Pin',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -138,7 +138,7 @@ class _DashboardState extends State<Dashboard> {
                             // Button Face Recognition action
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => ChangePasswordScreen(),
+                                builder: (context) => Changepassword(),
                               ),
                             );
                           },
