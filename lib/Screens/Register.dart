@@ -88,7 +88,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     validator: ValidateSignup.emailValidate,
-                    style: const TextStyle(fontSize: 16.0, color: Colors.pink),
+                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
@@ -114,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
-                    style: const TextStyle(fontSize: 16.0, color: Colors.pink),
+                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
@@ -224,13 +224,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.pink.shade100),
+                              MaterialStateProperty.all(Colors.black),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                       side: BorderSide(
-                                          color: Colors.pink.shade200))),
+                                          color: Colors.black))),
                           padding: MaterialStateProperty.all<EdgeInsets>(
                               EdgeInsets.symmetric(vertical: 20)),
                         ),
@@ -258,7 +258,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                           child: Text(
                             "Sign in",
-                            style: TextStyle(color: Colors.pink),
+                            style: TextStyle(color: Colors.red),
                           ))
                     ],
                   ),

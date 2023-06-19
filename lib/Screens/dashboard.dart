@@ -15,7 +15,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue[800],
+      backgroundColor: Colors.black26,
       body: Column(children: [
         Padding(
           padding: const EdgeInsets.all(30.0),
@@ -26,6 +26,7 @@ class _DashboardState extends State<Dashboard> {
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // greeting row
+
                   Text(
                     "hi Harry!",
                     style: TextStyle(
@@ -39,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   Text(
                     '23 Jan, 2023',
-                    style: TextStyle(color: Colors.blue[200]),
+                    style: TextStyle(color: Colors.grey[200]),
                   ),
                 ],
               ),
@@ -73,7 +74,7 @@ class _DashboardState extends State<Dashboard> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.blue[600],
+                    color: Colors.grey[900],
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: EdgeInsets.all(12),
@@ -94,7 +95,7 @@ class _DashboardState extends State<Dashboard> {
           children: [
             Expanded(
               child: Container(
-                color: Colors.white,
+                color: Colors.black26,
                 height: 470,
                 width: 100,
                 child: Column(
@@ -113,7 +114,7 @@ class _DashboardState extends State<Dashboard> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.blue[800],
+                            primary: Colors.grey[900],
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -143,7 +144,7 @@ class _DashboardState extends State<Dashboard> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.blue[800],
+                            primary: Colors.grey[900],
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -174,7 +175,7 @@ class _DashboardState extends State<Dashboard> {
                             ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.blue[800],
+                                primary: Colors.grey[900],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -197,7 +198,7 @@ class _DashboardState extends State<Dashboard> {
                             ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.blue[800],
+                                primary: Colors.grey[900],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -236,7 +237,7 @@ class _DashboardState extends State<Dashboard> {
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.blue[800],
+                                primary: Colors.grey[900],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -245,7 +246,7 @@ class _DashboardState extends State<Dashboard> {
                               child: Row(
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: const EdgeInsets.all(15.0),
                                     child: Text(
                                       'Logout',
                                       style: TextStyle(color: Colors.white),
