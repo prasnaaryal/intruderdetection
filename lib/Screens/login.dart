@@ -67,11 +67,12 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 children: [
                   Text(
-                    "Login from here",
+                    "Login",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                        color: Colors.grey.shade800),
+                        fontSize: 28,
+                        fontFamily: "Times New Roman",
+                        color: Colors.black),
                   ),
                   SizedBox(
                     height: 10,
@@ -89,11 +90,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: InputBorder.none,
                       prefixIcon: Icon(
                         Icons.email,
-                        color: Colors.blue[800],
+                        color: Colors.black,
                         size: 22.0,
                       ),
                       hintText: 'Email Address',
-                      hintStyle: TextStyle(fontSize: 17.0),
+                      hintStyle: TextStyle(fontSize: 17.0, fontFamily: "Times New Roman"),
                     ),
                   ),
                   SizedBox(
@@ -106,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     inputFormatters: <TextInputFormatter>[
                       FilteringTextInputFormatter.digitsOnly
                     ],
-                    style: const TextStyle(fontSize: 16.0, color: Colors.pink),
+                    style: const TextStyle(fontSize: 16.0, color: Colors.black),
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)),
@@ -118,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.black,
                       ),
                       hintText: 'PIN',
-                      hintStyle: const TextStyle(fontSize: 17.0),
+                      hintStyle: const TextStyle(fontSize: 17.0, fontFamily: "Times New Roman"),
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -146,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Forgot PIN?",
-                          style: TextStyle(color: Colors.blue[800]),
+                          style: TextStyle(color: Colors.blue[800], fontFamily: "Times New Roman"),
                         ),
                       )),
                   SizedBox(
@@ -157,13 +158,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.blue[800]),
+                              MaterialStateProperty.all(Colors.black),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                       side: BorderSide(
-                                          color: Colors.blue.shade400))),
+                                          color: Colors.white))),
                           padding: MaterialStateProperty.all<EdgeInsets>(
                               EdgeInsets.symmetric(vertical: 20)),
                         ),
@@ -172,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Log In",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20, fontFamily: "Times New Roman", color:Colors.white),
                         )),
                   ),
                   SizedBox(
@@ -183,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Login with biometrics? ",
-                        style: TextStyle(color: Colors.grey.shade800),
+                        style: TextStyle(color: Colors.grey.shade800, fontFamily: "Times New Roman"),
                       ),
                       InkWell(
                           onTap: () {
@@ -195,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Text(
                             "Login with Biometrics",
-                            style: TextStyle(color: Colors.pink),
+                            style: TextStyle(color: Colors.red, fontFamily: "Times New Roman"),
                           ))
                     ],
                   ),

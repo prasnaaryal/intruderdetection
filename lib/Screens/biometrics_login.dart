@@ -160,9 +160,10 @@ class _FingerprintState extends State<Fingerprint> {
               child: Text(
                 "Login",
                 style: TextStyle(
-                    color: Colors.blue,
+                    color: Colors.black,
                     fontSize: 48.0,
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.bold,
+                fontFamily: "Times New Roman"),
               ),
             ),
             Container(
@@ -176,18 +177,20 @@ class _FingerprintState extends State<Fingerprint> {
                   Text(
                     'Fingerprint Auth',
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Colors.black,
+                      fontFamily: "Times New Roman",
                       fontSize: 22.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Container(
-                    width: 150.0,
+                    width: 180.0,
                     child: Text(
                       "Authentication using your fingerprint instead of your password",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.black,
+                        fontFamily: "Times New Roman",
                         height: 1.5,
                       ),
                     ),
@@ -195,6 +198,18 @@ class _FingerprintState extends State<Fingerprint> {
                   Container(
                     width: double.infinity,
                     child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                        MaterialStateProperty.all(Colors.black),
+                        shape:
+                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18),
+                                side: BorderSide(
+                                    color: Colors.white))),
+                        padding: MaterialStateProperty.all<EdgeInsets>(
+                            EdgeInsets.symmetric(vertical: 10)),
+                      ),
                       onPressed: () {
                         _authenticate();
                       },
@@ -205,6 +220,7 @@ class _FingerprintState extends State<Fingerprint> {
                           "Authenticate",
                           style: TextStyle(
                             color: Colors.white,
+                            fontFamily: "Times New Roman",
                           ),
                         ),
                       ),
@@ -218,7 +234,7 @@ class _FingerprintState extends State<Fingerprint> {
                     children: [
                       Text(
                         "Go back to login page? ",
-                        style: TextStyle(color: Colors.grey.shade800),
+                        style: TextStyle(color: Colors.grey.shade800, fontFamily: "Times New Roman"),
                       ),
                       InkWell(
                           onTap: () {
@@ -230,7 +246,7 @@ class _FingerprintState extends State<Fingerprint> {
                           },
                           child: Text(
                             "Login",
-                            style: TextStyle(color: Colors.pink),
+                            style: TextStyle(color: Colors.red, fontFamily: "Times New Roman"),
                           ))
                     ],
                   ),

@@ -99,7 +99,7 @@ class _ChangepasswordState extends State<Changepassword> {
 
           })
       ),
-      backgroundColor: Color.fromRGBO(205, 231, 238, 1.0),
+      backgroundColor: Color.fromRGBO(16, 14, 14, 1.0),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -115,7 +115,8 @@ class _ChangepasswordState extends State<Changepassword> {
                         child: Text("Your New pin must not be the old pin you used",
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.blueGrey
+                          color: Colors.white,
+                          fontFamily: "Times New Roman",
                         ),
                         ),
                       ),
@@ -133,7 +134,7 @@ class _ChangepasswordState extends State<Changepassword> {
                               border: InputBorder.none,
                               // label: Text("Password"),
                               hintText: " Current Pin",
-                              prefixIcon: Icon(Icons.star),
+                              prefixIcon: Icon(Icons.pin),
                               suffixIcon: IconButton(
                                   onPressed: () {
                                     setState(() {
@@ -240,14 +241,16 @@ class _ChangepasswordState extends State<Changepassword> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(93, 108, 137, 1.0),
+                        backgroundColor: Colors.white60,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         )),
                     child: Text("Change Pin",
                     style: TextStyle(
                       fontSize: 20,
-                      fontWeight: FontWeight.bold
+                      fontFamily: "Times New Roman",
+                      fontWeight: FontWeight.bold,
+
                     ),
                     ),
                   )),

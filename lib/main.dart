@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intruderdetection/Screens/Register.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
+import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/forgetpin.dart';
 import 'package:intruderdetection/Screens/login.dart';
@@ -105,7 +106,7 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.grey,
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/login",
+            initialRoute: "/uploadandview",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),
@@ -114,6 +115,7 @@ class MyApp extends StatelessWidget {
               "/uploadandview": (BuildContext context) => UploadAndViewImages(),
               "/forgetpin": (BuildContext context) => ForgotPassword(),
               "/register": (BuildContext context) => RegisterScreen(),
+              "/changepassword":(BuildContext context)=> Changepassword(),
               
 
             },

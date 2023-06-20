@@ -105,10 +105,10 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                 ),
                 title: Text(
                   "Add Image",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(color: Colors.white, fontFamily: "Times New Roman"),
                 ),
               ),
-              backgroundColor: Colors.white,
+              backgroundColor: Colors.black,
               body: Form(
                 // autovalidateMode: AutovalidateMode.onUserInteraction,
                 key: form,
@@ -122,7 +122,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                         InkWell(
                           child: Center(
                             child: CircleAvatar(
-                              backgroundColor: Color(0xFF6D3F83),
+                              backgroundColor: Color(0xFF9846BE),
                               radius: 85,
                               child: CircleAvatar(
                                 backgroundImage: image != null
@@ -161,11 +161,11 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15,
                                   color: myFocusNode.hasFocus
-                                      ? Color.fromARGB(255, 136, 117, 163)
-                                      : Color.fromARGB(255, 139, 117, 169)),
+                                      ? Color.fromARGB(255, 233, 231, 234)
+                                      : Color.fromARGB(255, 238, 238, 238)),
                               border: UnderlineInputBorder(),
                               focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
+                                  borderSide: BorderSide(color: Colors.white))),
                           onChanged: (value) => setState(() {
                             name = value;
                           }),
@@ -213,9 +213,9 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                             ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  Color.fromARGB(255, 146, 114, 174),
+                                  Color.fromARGB(255, 234, 226, 226),
                               foregroundColor:
-                                  Color.fromARGB(255, 230, 211, 239),
+                                  Color.fromARGB(255, 16, 16, 16),
                             ),
                           ),
                         ),
@@ -258,7 +258,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                         height: 5,
                       ),
                       Text(
-                        "Gallary",
+                        "Gallery",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       )
