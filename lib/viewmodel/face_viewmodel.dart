@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intruderdetection/Services/firebase_service.dart';
 import 'package:intruderdetection/repositories/knownFaceRepo.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import '../models/faces.dart';
 
@@ -54,18 +56,39 @@ class FaceViewModel with ChangeNotifier{
 
   }
 
-  Future<void> deleteFace(String id) async{
+  Future<void> deleteFace(Face face) async{
     try{
       print("delete face viewmodel");
-      await FaceRepo().deleteFace(id);
+      await FaceRepo().deleteFace(face: face);
       notifyListeners();
     } catch(err){
       print("face delete repo error $err");
       rethrow;
     }
+
+  
   }
+  Future<void> deletePhoto(Face face) async{
+    try{
+      await FirebaseService.storageRef.child(face.imagepath).delete();
+    }catch(e){
+       print("storage delete error $e");
+       rethrow;
+    }
 
+  }
+   Future<void> delete(Face face) async{
+    try{
+      await deletePhoto(face);
+    }catch(e){
+       print("storage delete error $e");
+       rethrow;
+    }
 
+  }
+   
+
+ 
 
 
 }

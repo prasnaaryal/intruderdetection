@@ -4,17 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:intruderdetection/Screens/photos.dart';
+import 'package:intruderdetection/models/faces.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/global_ui_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class KnownFaceDetails extends StatefulWidget {
-  late String imageUrl;
-  late String Name;
-  late String docId;
-  late String path;
-  KnownFaceDetails(this.imageUrl, this.path, this.Name, this.docId);
+  late Face face;
+ 
+  KnownFaceDetails({required this.face});
 
   @override
   State<KnownFaceDetails> createState() => _KnownFaceDetailsState();
@@ -57,17 +56,18 @@ class _KnownFaceDetailsState extends State<KnownFaceDetails> {
             GestureDetector(
               child: CircleAvatar(
                 radius: 150,
-                  backgroundImage: NetworkImage(widget.imageUrl)),
+                  backgroundImage: NetworkImage(widget.face.imageurl!)),
                 onTap: () {
-                  print("path of the image displayed: ${widget.path}");
+                  print("path of the image displayed: ${widget.face.imagepath}");
                 },
             ),
-            Text(widget.Name),
+            Text(widget.face.name!),
             ElevatedButton(
                 onPressed: (() {
-                  print("delete button clicked ${widget.docId}");
-                  _face.deleteFace(widget.docId).then((value) {
-                    print("face documnet to delete ${widget.docId}");
+                  print("delete button clicked ${widget.face.docId}");
+                  _face.deleteFace(widget.face).then((value) {
+                    _face.delete(widget.face);
+                    print("face documnet to delete ${widget.face.docId}");
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("Face Deleted sucessfully")));
                     Navigator.pop(context);

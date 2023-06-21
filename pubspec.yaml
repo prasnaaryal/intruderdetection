@@ -44,6 +44,7 @@ dependencies:
   firebase_storage: ^11.0.10
   image_picker: ^0.8.6
   password_field_validator: ^0.0.1
+  
  
     
   path_provider: ^2.0.11

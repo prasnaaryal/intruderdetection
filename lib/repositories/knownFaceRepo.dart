@@ -74,15 +74,27 @@ class FaceRepo{
      }
   }
   
-  Future<void> deleteFace(String id) async{
+  Future<void> deleteFace({required Face face}) async{
      try{
-      await faceRef.doc(id).delete();
+      await faceRef.doc(face.docId).delete();
+
       print("delete face repo riched");
      }catch(e){
       print("face delete repo error $e");
       rethrow;
      }
   }
+
+  Future<void> deletePhoto(Face face) async{
+    try{
+      await FirebaseService.storageRef.child(face.imagepath).delete();
+    }catch(e){
+       print("storage delete error $e");
+       rethrow;
+    }
+
+  }
+  
 
       
   

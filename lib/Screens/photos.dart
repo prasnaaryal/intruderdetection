@@ -72,7 +72,7 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
                   Navigator.pop(context);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) =>  KnownFaceDetails(face.imageurl!,face.imagepath!,face.name!,face.docId!)),
+                MaterialPageRoute(builder: (context) =>  KnownFaceDetails( face: face,)),
               );
 
                

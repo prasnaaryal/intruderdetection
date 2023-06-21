@@ -12,7 +12,7 @@ String faceToJson(Face data) => json.encode(data.toJson());
 
 class Face {
     String? name;
-    String? imagepath;
+    String imagepath;
     String? imageurl;
     String? docId;
 
