@@ -4,17 +4,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import '../Services/firebase_service.dart';
 import '../models/faces.dart';
 
-class FaceRepo{
+class IntruderRepo{
   FirebaseStorage storage = FirebaseStorage.instance;
   
-     CollectionReference<Face> faceRef =
-      FirebaseService.db.collection("securityPhotos").withConverter<Face>(
-            fromFirestore: (snapshot, _) {
-              return Face.fromFirebaseSnapshot(snapshot);
-            },
-            toFirestore: (model, _) => model.toJson(),
-          );
-
+  
 
   Future<String> downoladUrl(String? image) async{
     print("IamImage $image");
