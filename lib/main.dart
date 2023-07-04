@@ -1,6 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intruderdetection/Screens/Register.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
@@ -9,48 +10,46 @@ import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/forgetpin.dart';
 import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/Services/notification_services.dart';
-
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/global_ui_viewmodel.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 
-import 'Screens/photos.dart';
+import 'Screens/UploadAndViewImages.dart';
 import 'Screens/uploadImage.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  print("Handling a background message: ${message.messageId}");}
-
+  print("Handling a background message: ${message.messageId}");
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
- 
+
   NotificationService.initialize();
   FirebaseMessaging.instance.getInitialMessage();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-    // Request permission for receiving notifications
-  NotificationSettings settings = await FirebaseMessaging.instance.requestPermission();
+  // Request permission for receiving notifications
+  NotificationSettings settings =
+      await FirebaseMessaging.instance.requestPermission();
   print('User granted permission: ${settings.authorizationStatus}');
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
- 
+
   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
     alert: true,
     badge: true,
     sound: true,
   );
- 
+
   // NotificationService.initialize();
   runApp(MyApp());
 }
+
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications', // title
@@ -58,17 +57,13 @@ const AndroidNotificationChannel channel = AndroidNotificationChannel(
 );
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
- 
-
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => FaceViewModel()),
@@ -105,10 +100,9 @@ class MyApp extends StatelessWidget {
               // is not restarted.g
               primarySwatch: Colors.grey,
               inputDecorationTheme: const InputDecorationTheme(
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 1.2, color: Colors.white),
-                )
-              ),
+                  enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1.2, color: Colors.white),
+              )),
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
             initialRoute: "/changepassword",
@@ -120,9 +114,7 @@ class MyApp extends StatelessWidget {
               "/uploadandview": (BuildContext context) => UploadAndViewImages(),
               "/forgetpin": (BuildContext context) => ForgotPassword(),
               "/register": (BuildContext context) => RegisterScreen(),
-              "/changepassword":(BuildContext context)=> Changepassword(),
-              
-
+              "/changepassword": (BuildContext context) => Changepassword(),
             },
           );
         }),

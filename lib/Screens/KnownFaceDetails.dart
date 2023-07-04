@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:intruderdetection/Screens/photos.dart';
+import 'package:intruderdetection/Screens/UploadAndViewImages.dart';
 import 'package:intruderdetection/models/faces.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
@@ -12,7 +8,7 @@ import 'package:provider/provider.dart';
 
 class KnownFaceDetails extends StatefulWidget {
   late Face face;
- 
+
   KnownFaceDetails({required this.face});
 
   @override
@@ -51,17 +47,18 @@ class _KnownFaceDetailsState extends State<KnownFaceDetails> {
         ],
       ),
       body: Center(
-
         child: ListView(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             GestureDetector(
               child: CircleAvatar(
-                radius: 150,
+                  radius: 150,
                   backgroundImage: NetworkImage(widget.face.imageurl!)),
-                onTap: () {
-                  print("path of the image displayed: ${widget.face.imagepath}");
-                },
+              onTap: () {
+                print("path of the image displayed: ${widget.face.imagepath}");
+              },
             ),
             Text(widget.face.name!),
             ElevatedButton(

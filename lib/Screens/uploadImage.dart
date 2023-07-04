@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intruderdetection/Screens/photos.dart';
+import 'package:intruderdetection/Screens/UploadAndViewImages.dart';
 import 'package:intruderdetection/models/faces.dart';
 import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -105,7 +105,8 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                 ),
                 title: Text(
                   "Add Image",
-                  style: TextStyle(color: Colors.white, fontFamily: "Times New Roman"),
+                  style: TextStyle(
+                      color: Colors.white, fontFamily: "Times New Roman"),
                 ),
               ),
               backgroundColor: Colors.black,
@@ -193,7 +194,8 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                                   faceadding();
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content: Text("Face Added Sucessfully")));
+                                          content:
+                                              Text("Face Added Sucessfully")));
                                   Navigator.pop(context);
                                   Navigator.push(
                                       context,
@@ -210,14 +212,12 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                                 fontFamily: 'Times New Roman',
                                 fontWeight: FontWeight.w500,
                                 color: Colors.black,
-
                               ),
                             ),
                             style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   Color.fromARGB(255, 234, 226, 226),
-                              foregroundColor:
-                                  Color.fromARGB(255, 16, 16, 16),
+                              foregroundColor: Color.fromARGB(255, 16, 16, 16),
                             ),
                           ),
                         ),

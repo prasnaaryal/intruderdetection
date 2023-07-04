@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intruderdetection/Screens/Notification.dart';
+import 'package:intruderdetection/Screens/UploadAndViewImages.dart';
+import 'package:intruderdetection/Screens/allIntruderImages.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
-import 'package:intruderdetection/Screens/photos.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -47,20 +48,6 @@ class _DashboardState extends State<Dashboard> {
               SizedBox(
                 height: 100,
               ),
-              // SafeArea(
-              //   child: Expanded(
-              //       child: Container(
-              //     padding: EdgeInsets.fromLTRB(100, 10, 100, 100),
-              //     color: Colors.grey[100],
-              //     child: Text(
-              //       'Icons',
-              //       style: TextStyle(
-              //         fontWeight: FontWeight.bold,
-              //         fontSize: 20,
-              //       ),
-              //     ),
-              //   )),
-              // ),
               GestureDetector(
                 onTap: () {
                   // Handle press event here
@@ -128,7 +115,7 @@ class _DashboardState extends State<Dashboard> {
                                 color: Colors.white,
                               ),
                               Text(
-                                'Change Pin',
+                                'Face Recognition',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -158,7 +145,7 @@ class _DashboardState extends State<Dashboard> {
                                 color: Colors.white,
                               ),
                               Text(
-                                'Face Recognition',
+                                'Change Password',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -173,7 +160,14 @@ class _DashboardState extends State<Dashboard> {
                           buttonPadding: EdgeInsets.symmetric(horizontal: 16),
                           children: [
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                // Button Intruder Face Recognition action
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => ViewImagesIntruders(),
+                                  ),
+                                );
+                              },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.grey[700],
                                 shape: RoundedRectangleBorder(
@@ -189,7 +183,7 @@ class _DashboardState extends State<Dashboard> {
                                     color: Colors.white,
                                   ),
                                   Text(
-                                    'Button A',
+                                    'Intruders',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
