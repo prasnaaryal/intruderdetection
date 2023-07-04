@@ -147,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Forgot PIN?",
-                          style: TextStyle(color: Colors.blue[800], fontFamily: "Times New Roman"),
+                          style: TextStyle(color: Colors.blue[900], fontFamily: "Times New Roman"),
                         ),
                       )),
                   SizedBox(

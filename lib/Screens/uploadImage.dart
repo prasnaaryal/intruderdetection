@@ -154,7 +154,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                             }
                           },
                           decoration: InputDecoration(
-                              errorStyle: TextStyle(color: Colors.black),
+                              errorStyle: TextStyle(color: Colors.white),
                               labelText: "Name",
                               labelStyle: TextStyle(
                                   fontFamily: 'roboto',
@@ -174,7 +174,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                         SizedBox(height: 10),
                         SizedBox(height: 40),
                         SizedBox(
-                          width: 100,
+                          width: 90,
                           height: 50,
                           child: ElevatedButton(
                             onHover: (value) {
@@ -193,7 +193,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                                   faceadding();
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
-                                          content: Text("Face Added Sucess")));
+                                          content: Text("Face Added Sucessfully")));
                                   Navigator.pop(context);
                                   Navigator.push(
                                       context,
@@ -207,8 +207,10 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                               "Add",
                               style: TextStyle(
                                 fontSize: 20,
-                                fontFamily: 'roboto',
+                                fontFamily: 'Times New Roman',
                                 fontWeight: FontWeight.w500,
+                                color: Colors.black,
+
                               ),
                             ),
                             style: ElevatedButton.styleFrom(

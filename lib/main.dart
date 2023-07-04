@@ -104,9 +104,14 @@ class MyApp extends StatelessWidget {
               // Notice that the counter didn't reset back to zero; the application
               // is not restarted.g
               primarySwatch: Colors.grey,
+              inputDecorationTheme: const InputDecorationTheme(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(width: 1.2, color: Colors.white),
+                )
+              ),
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/uploadandview",
+            initialRoute: "/changepassword",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),

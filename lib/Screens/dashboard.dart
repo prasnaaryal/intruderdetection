@@ -74,7 +74,7 @@ class _DashboardState extends State<Dashboard> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[900],
+                    color: Colors.grey[700],
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: EdgeInsets.all(12),
@@ -114,7 +114,7 @@ class _DashboardState extends State<Dashboard> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[900],
+                            primary: Colors.grey[700],
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -144,7 +144,7 @@ class _DashboardState extends State<Dashboard> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[900],
+                            primary: Colors.grey[700],
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -175,7 +175,7 @@ class _DashboardState extends State<Dashboard> {
                             ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[900],
+                                primary: Colors.grey[700],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -198,7 +198,7 @@ class _DashboardState extends State<Dashboard> {
                             ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[900],
+                                primary: Colors.grey[700],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -237,7 +237,7 @@ class _DashboardState extends State<Dashboard> {
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[900],
+                                primary: Colors.grey[700],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
