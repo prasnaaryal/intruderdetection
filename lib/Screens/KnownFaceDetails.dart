@@ -30,9 +30,9 @@ class _KnownFaceDetailsState extends State<KnownFaceDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black26,
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        backgroundColor: Colors.grey[700],
+        backgroundColor: Colors.black,
         title: Text("Details"),
         actions: [
           IconButton(

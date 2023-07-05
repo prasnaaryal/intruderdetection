@@ -91,9 +91,16 @@ class _ChangepasswordState extends State<Changepassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context,
-          title: "Change Pin",
-          actions: [],
+      appBar: AppBar(
+          title:Text(
+            "Change Pin",
+            style: TextStyle(color: Colors.white),
+            // Replace "Colors.red" with your desired color
+          ),
+
+
+          actions: [
+          ],
           leading: CustomBackButton(tapEvent: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
 
@@ -124,8 +131,8 @@ class _ChangepasswordState extends State<Changepassword> {
                       SizedBox(height: 30,),
                       Container(
                         decoration: BoxDecoration(
-                          color: Colors.white54,
-                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         child: TextFormField(
                           obscureText: _obsecured,
@@ -147,7 +154,7 @@ class _ChangepasswordState extends State<Changepassword> {
                           controller: currentController,
                           validator: ((value) {
                             if (value == null || value.isEmpty) {
-                              return "Please Enter Pin";
+                              return "    Please Enter Pin";
                             }
                             return null;
                           }),
@@ -159,8 +166,8 @@ class _ChangepasswordState extends State<Changepassword> {
                       Container(
                         // margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                         decoration: BoxDecoration(
-                          color: Colors.white54,
-                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(7),
                         ),
                         child: TextFormField(
                           obscureText: _obsecured,
@@ -169,7 +176,7 @@ class _ChangepasswordState extends State<Changepassword> {
                               border: InputBorder.none,
                               // label: Text("Password"),
                               hintText: " New Pin",
-                              prefixIcon: Icon(Icons.star),
+                              prefixIcon: Icon(Icons.pin),
                               suffixIcon: IconButton(
                                   onPressed: () {
                                     setState(() {
@@ -194,8 +201,8 @@ class _ChangepasswordState extends State<Changepassword> {
                       Container(
                         // margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                         decoration: BoxDecoration(
-                          color: Colors.white54,
-                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
                         ),
                         child: TextFormField(
                           obscureText: _obsecured,
@@ -204,7 +211,7 @@ class _ChangepasswordState extends State<Changepassword> {
                               border: InputBorder.none,
                               // label: Text("Email"),
                               hintText: "Confirm Pin",
-                              prefixIcon: Icon(Icons.star),
+                              prefixIcon: Icon(Icons.pin),
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
@@ -241,15 +248,16 @@ class _ChangepasswordState extends State<Changepassword> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white60,
+                        backgroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
+                          borderRadius: BorderRadius.circular(8),
                         )),
                     child: Text("Change Pin",
                     style: TextStyle(
                       fontSize: 20,
+                      color: Colors.black,
                       fontFamily: "Times New Roman",
-                      fontWeight: FontWeight.bold,
+                      // fontWeight: FontWeight.bold,
 
                     ),
                     ),

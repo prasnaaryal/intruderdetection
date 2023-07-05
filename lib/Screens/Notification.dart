@@ -48,7 +48,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
         appBar: AppBar(
+          backgroundColor: Colors.grey[900],
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {

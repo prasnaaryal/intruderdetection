@@ -105,7 +105,7 @@ class MyApp extends StatelessWidget {
               )),
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/changepassword",
+            initialRoute: "/dashboard",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),
