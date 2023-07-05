@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intruderdetection/Screens/Notification.dart';
 import 'package:intruderdetection/Screens/UploadAndViewImages.dart';
-import 'package:intruderdetection/Screens/allIntruderImages.dart';
+import 'package:intruderdetection/Screens/UploadAndViewImagesIntruders.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
 
@@ -41,7 +41,8 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   Text(
                     '23 Jan, 2023',
-                    style: TextStyle(color: Colors.grey[200],
+                    style: TextStyle(
+                      color: Colors.grey[200],
                     ),
                   ),
                 ],
@@ -165,7 +166,8 @@ class _DashboardState extends State<Dashboard> {
                                 // Button Intruder Face Recognition action
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                    builder: (context) => ViewImagesIntruders(),
+                                    builder: (context) =>
+                                        UploadAndViewImagesIntruders(),
                                   ),
                                 );
                               },
