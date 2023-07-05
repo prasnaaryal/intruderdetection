@@ -40,6 +40,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
           print(message.notification!.title);
           print(message.notification!.body);
           print("message.data22 ${message.data['_id']}");
+          // Handle the notification when the app is in the background or foreground
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Dashboard()));
         }
       },
     );
@@ -48,11 +51,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black26,
+        backgroundColor: Colors.black26,
         appBar: AppBar(
           backgroundColor: Colors.grey[900],
           leading: IconButton(
-            icon: Icon(Icons.arrow_back,color: Colors.white,),
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
             onPressed: () {
               Navigator.pop(context);
               Navigator.push(context,
@@ -60,18 +66,22 @@ class _NotificationScreenState extends State<NotificationScreen> {
             },
           ),
           centerTitle: true,
-          title: Text('Notifications',
-          style: TextStyle(
-            fontFamily: "Times New Roman",
-            color: Colors.white,
-          ),),
+          title: Text(
+            'Notifications',
+            style: TextStyle(
+              fontFamily: "Times New Roman",
+              color: Colors.white,
+            ),
+          ),
         ),
         body: const Center(
-          child: Text("Recent Notification",
-          style: TextStyle(
-            fontFamily: "Times New Roman",
-            color: Colors.white,
-          ),),
+          child: Text(
+            "Recent Notification",
+            style: TextStyle(
+              fontFamily: "Times New Roman",
+              color: Colors.white,
+            ),
+          ),
         ));
   }
 }
