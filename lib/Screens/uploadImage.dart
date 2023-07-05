@@ -94,7 +94,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
           child: Scaffold(
               appBar: AppBar(
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back),
+                  icon: Icon(Icons.arrow_back,color: Colors.white,),
                   onPressed: () {
                     Navigator.pop(context);
                     Navigator.push(
@@ -146,6 +146,9 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                         ),
                         TextFormField(
                           keyboardType: TextInputType.text,
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
                           controller: face_name,
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
@@ -175,7 +178,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
                         SizedBox(height: 10),
                         SizedBox(height: 40),
                         SizedBox(
-                          width: 90,
+                          width: 70,
                           height: 50,
                           child: ElevatedButton(
                             onHover: (value) {

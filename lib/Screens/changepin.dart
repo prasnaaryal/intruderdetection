@@ -92,20 +92,26 @@ class _ChangepasswordState extends State<Changepassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title:Text(
-            "Change Pin",
-            style: TextStyle(color: Colors.white),
-            // Replace "Colors.red" with your desired color
+        backgroundColor: Colors.grey[900],
+        title: Text(
+          "Change Pin",
+          style: TextStyle(color: Colors.white),
+        ),
+        actions: [
+          // Other actions can be added here
+        ],
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white, // Set the custom back button color to white
           ),
-
-
-          actions: [
-          ],
-          leading: CustomBackButton(tapEvent: () {
+          onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
-
-          })
+          },
+        ),
       ),
+
+
       backgroundColor: Color.fromRGBO(16, 14, 14, 1.0),
       body: SingleChildScrollView(
         child: SafeArea(

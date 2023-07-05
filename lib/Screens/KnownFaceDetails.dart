@@ -32,7 +32,6 @@ class _KnownFaceDetailsState extends State<KnownFaceDetails> {
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        backgroundColor: Colors.black,
         title: Text("Details"),
         actions: [
           IconButton(
