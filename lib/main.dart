@@ -10,9 +10,11 @@ import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/forgetpin.dart';
 import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/Services/notification_services.dart';
+import 'package:intruderdetection/repositories/intruderPhoto_repo.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/global_ui_viewmodel.dart';
+import 'package:intruderdetection/viewmodel/intruder_viewmodel.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:provider/provider.dart';
 
@@ -69,6 +71,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => FaceViewModel()),
         ChangeNotifierProvider(create: (_) => GlobalUIViewModel()),
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider<IntruderViewModel>(
+          create: (_) => IntruderViewModel(intruderRepo: IntruderRepo()),
+        ),
       ],
       child: GlobalLoaderOverlay(
         useDefaultLoading: false,
