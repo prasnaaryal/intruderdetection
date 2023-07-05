@@ -36,9 +36,11 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
     return Consumer<FaceViewModel>(
       builder: (context, faceVM, child) {
         return Scaffold(
+          backgroundColor: Colors.black26,
           appBar: AppBar(
+            backgroundColor: Colors.grey[900],
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.arrow_back,color: Colors.white,),
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -47,7 +49,11 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
                 );
               },
             ),
-            title: Text('Known Faces'),
+            title: Text('Known Faces',style:
+              TextStyle(
+                fontFamily: "Times New Roman",
+                color: Colors.white,
+              ),),
           ),
           body: ListView.builder(
             itemCount: faceVM.allFace.length,
@@ -56,7 +62,9 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
               print("face printed in model $face");
               return ListTile(
                 leading: Image.network(face.imageurl!),
-                title: Text(face.name!),
+                title: Text(face.name!,style: TextStyle(
+                  color: Colors.white, fontFamily: "Times New Roman"
+                ),),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -71,7 +79,7 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
             },
           ),
           floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.blue[800],
+            backgroundColor: Colors.grey[800],
             onPressed: () {
               Navigator.push(
                 context,

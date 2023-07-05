@@ -27,13 +27,13 @@ class _DashboardState extends State<Dashboard> {
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // greeting row
-
                   Text(
-                    "hi Harry!",
+                    "Hi Sanjeela!",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 24,
+                      fontSize: 22,
                       fontWeight: FontWeight.bold,
+                      // fontFamily: "Times New Roman",
                     ),
                   ),
                   SizedBox(
@@ -41,7 +41,8 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   Text(
                     '23 Jan, 2023',
-                    style: TextStyle(color: Colors.grey[200]),
+                    style: TextStyle(color: Colors.grey[200],
+                    ),
                   ),
                 ],
               ),
@@ -61,7 +62,7 @@ class _DashboardState extends State<Dashboard> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.grey[700],
+                    color: Colors.grey[800],
                     borderRadius: BorderRadius.circular(12),
                   ),
                   padding: EdgeInsets.all(12),
@@ -101,7 +102,7 @@ class _DashboardState extends State<Dashboard> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[700],
+                            primary: Colors.grey[800],
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -131,7 +132,7 @@ class _DashboardState extends State<Dashboard> {
                             );
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.grey[700],
+                            primary: Colors.grey[800],
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -169,7 +170,7 @@ class _DashboardState extends State<Dashboard> {
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[700],
+                                primary: Colors.grey[800],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -192,7 +193,7 @@ class _DashboardState extends State<Dashboard> {
                             ElevatedButton(
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[700],
+                                primary: Colors.grey[800],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -231,7 +232,7 @@ class _DashboardState extends State<Dashboard> {
                                 );
                               },
                               style: ElevatedButton.styleFrom(
-                                primary: Colors.grey[700],
+                                primary: Colors.grey[800],
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),

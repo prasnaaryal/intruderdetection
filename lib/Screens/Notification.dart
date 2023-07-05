@@ -50,7 +50,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       backgroundColor: Colors.black26,
         appBar: AppBar(
-          backgroundColor: Colors.grey[800],
+          backgroundColor: Colors.grey[900],
           leading: IconButton(
             icon: Icon(Icons.arrow_back,color: Colors.white,),
             onPressed: () {

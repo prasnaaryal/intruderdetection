@@ -93,6 +93,7 @@ class _AddKnowFacesState extends State<AddKnowFaces> {
           decoration: BoxDecoration(color: Colors.white),
           child: Scaffold(
               appBar: AppBar(
+                backgroundColor: Colors.grey[900],
                 leading: IconButton(
                   icon: Icon(Icons.arrow_back,color: Colors.white,),
                   onPressed: () {

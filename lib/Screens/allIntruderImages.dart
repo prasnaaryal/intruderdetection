@@ -37,9 +37,11 @@ class _ViewImagesState extends State<ViewImagesIntruders> {
     return Consumer<FaceViewModel>(
       builder: (context, faceVM, child) {
         return Scaffold(
+          backgroundColor: Colors.black26,
           appBar: AppBar(
+            backgroundColor: Colors.grey[900],
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.arrow_back,color: Colors.white,),
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -48,7 +50,10 @@ class _ViewImagesState extends State<ViewImagesIntruders> {
                 );
               },
             ),
-            title: Text('Intruders'),
+            title: Text('Intruders',style: TextStyle(
+              color: Colors.white,
+              fontFamily: "Times New Roman",
+            ),),
           ),
           body: ListView.builder(
             itemCount: faceVM.allFace.length,
@@ -57,7 +62,9 @@ class _ViewImagesState extends State<ViewImagesIntruders> {
               print("face printed in model $face");
               return ListTile(
                 leading: Image.network(face.imageurl!),
-                title: Text(face.name!),
+                title: Text(face.name!,style: TextStyle(
+                  color: Colors.white,
+                ),),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.push(
@@ -70,7 +77,7 @@ class _ViewImagesState extends State<ViewImagesIntruders> {
             },
           ),
           floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.blue[800],
+            backgroundColor: Colors.grey[800],
             onPressed: () {
               Navigator.push(
                 context,
