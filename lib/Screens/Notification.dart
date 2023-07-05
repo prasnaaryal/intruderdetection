@@ -48,11 +48,11 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.black26,
         appBar: AppBar(
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Colors.grey[800],
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(Icons.arrow_back,color: Colors.white,),
             onPressed: () {
               Navigator.pop(context);
               Navigator.push(context,
@@ -60,10 +60,18 @@ class _NotificationScreenState extends State<NotificationScreen> {
             },
           ),
           centerTitle: true,
-          title: Text('Notifications'),
+          title: Text('Notifications',
+          style: TextStyle(
+            fontFamily: "Times New Roman",
+            color: Colors.white,
+          ),),
         ),
         body: const Center(
-          child: Text("Recent Notification"),
+          child: Text("Recent Notification",
+          style: TextStyle(
+            fontFamily: "Times New Roman",
+            color: Colors.white,
+          ),),
         ));
   }
 }
