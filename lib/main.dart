@@ -9,6 +9,7 @@ import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/forgetpin.dart';
 import 'package:intruderdetection/Screens/login.dart';
+import 'package:intruderdetection/Screens/ph_value.dart';
 import 'package:intruderdetection/Services/notification_services.dart';
 import 'package:intruderdetection/repositories/intruderPhoto_repo.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
@@ -110,7 +111,7 @@ class MyApp extends StatelessWidget {
               )),
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/dashboard",
+            initialRoute: "/ph",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),
@@ -120,6 +121,7 @@ class MyApp extends StatelessWidget {
               "/forgetpin": (BuildContext context) => ForgotPassword(),
               "/register": (BuildContext context) => RegisterScreen(),
               "/changepassword": (BuildContext context) => Changepassword(),
+              "/ph":(BuildContext context) => pHvalue(),
             },
           );
         }),

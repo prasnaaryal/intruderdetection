@@ -128,8 +128,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Icon(
                           _obscureTextPassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                           size: 20.0,
                           color: Colors.black,
                         ),

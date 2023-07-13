@@ -4,6 +4,7 @@ import 'package:intruderdetection/Screens/UploadAndViewImages.dart';
 import 'package:intruderdetection/Screens/UploadAndViewImagesIntruders.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
+import 'package:intruderdetection/Screens/ph_value.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -54,7 +55,7 @@ class _DashboardState extends State<Dashboard> {
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
-              padding: const EdgeInsets.all(70.0),
+              padding: const EdgeInsets.all(40.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -112,7 +113,7 @@ class _DashboardState extends State<Dashboard> {
                     alignment: Alignment.topRight,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 2.0, horizontal: 0.0),
+                          vertical: 0.0, horizontal: 0.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -260,8 +261,16 @@ class _DashboardState extends State<Dashboard> {
                                   ],
                                 ),
                               ),
+
                               ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            pHvalue(),
+                                      ),
+                                      );
+                                },
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.grey[800],
                                   shape: RoundedRectangleBorder(
@@ -277,9 +286,10 @@ class _DashboardState extends State<Dashboard> {
                                       color: Colors.white,
                                     ),
                                     Text(
-                                      'Button B',
+                                      'pH',
                                       style: TextStyle(color: Colors.white),
                                     ),
+
                                   ],
                                 ),
                               ),
