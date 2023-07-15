@@ -4,6 +4,7 @@ import 'package:intruderdetection/Screens/UploadAndViewImages.dart';
 import 'package:intruderdetection/Screens/UploadAndViewImagesIntruders.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
+import 'package:intruderdetection/Screens/ph.dart';
 import 'package:intruderdetection/Screens/ph_value.dart';
 
 class Dashboard extends StatefulWidget {
