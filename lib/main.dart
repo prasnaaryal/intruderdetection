@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intruderdetection/Screens/Register.dart';
+import 'package:intruderdetection/Screens/Turbidity_value.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
 import 'package:intruderdetection/Screens/forgetpin.dart';
 import 'package:intruderdetection/Screens/login.dart';
 import 'package:intruderdetection/Screens/ph.dart';
-import 'package:intruderdetection/Screens/ph_value.dart';
 import 'package:intruderdetection/Services/notification_services.dart';
 import 'package:intruderdetection/repositories/intruderPhoto_repo.dart';
 import 'package:intruderdetection/viewmodel/auth_viewmodel.dart';
@@ -112,7 +112,7 @@ class MyApp extends StatelessWidget {
               )),
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/ph",
+            initialRoute: "/tur",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),
@@ -123,6 +123,7 @@ class MyApp extends StatelessWidget {
               "/register": (BuildContext context) => RegisterScreen(),
               "/changepassword": (BuildContext context) => Changepassword(),
               "/ph":(BuildContext context) => pHvalue(),
+              "/tur":(BuildContext context) => TurbidityValue(),
             },
           );
         }),
