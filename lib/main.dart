@@ -5,6 +5,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intruderdetection/Screens/Register.dart';
 import 'package:intruderdetection/Screens/Turbidity_value.dart';
+import 'package:intruderdetection/Screens/WaterTem_value.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/dashboard.dart';
@@ -124,6 +125,7 @@ class MyApp extends StatelessWidget {
               "/changepassword": (BuildContext context) => Changepassword(),
               "/ph":(BuildContext context) => pHvalue(),
               "/tur":(BuildContext context) => TurbidityValue(),
+              "/water":(BuildContext context)=> WaterTempValue(),
             },
           );
         }),
