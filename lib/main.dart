@@ -113,7 +113,7 @@ class MyApp extends StatelessWidget {
               )),
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
-            initialRoute: "/tur",
+            initialRoute: "/dashboard",
             routes: {
               "/login": (BuildContext context) => LoginScreen(),
               "/dashboard": (BuildContext context) => Dashboard(),
@@ -123,9 +123,9 @@ class MyApp extends StatelessWidget {
               "/forgetpin": (BuildContext context) => ForgotPassword(),
               "/register": (BuildContext context) => RegisterScreen(),
               "/changepassword": (BuildContext context) => Changepassword(),
-              "/ph":(BuildContext context) => pHvalue(),
-              "/tur":(BuildContext context) => TurbidityValue(),
-              "/water":(BuildContext context)=> WaterTempValue(),
+              "/ph": (BuildContext context) => pHvalue(),
+              "/tur": (BuildContext context) => TurbidityValue(),
+              "/water": (BuildContext context) => WaterTempValue(),
             },
           );
         }),

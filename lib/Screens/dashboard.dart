@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:intruderdetection/Screens/Notification.dart';
 import 'package:intruderdetection/Screens/UploadAndViewImages.dart';
 import 'package:intruderdetection/Screens/UploadAndViewImagesIntruders.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/ph.dart';
+
+import 'Notification.dart';
+import 'new.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -52,110 +54,78 @@ class _DashboardState extends State<Dashboard> {
       backgroundColor: Colors.black26,
       body: Column(
         children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: Column(
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                vertical: 90,
+                horizontal: 30), // Add padding around the entire widget
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment
+                    .end, // Align children to the right side of the Row
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // greeting row
-                  Text(
-                    "Hi Sanjeela!",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      // fontFamily: "Times New Roman",
+                  Expanded(
+                    // Wrap the Text widgets with Expanded
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Hi Sanjeela!",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            // fontFamily: "Times New Roman",
+                          ),
+                        ),
+                        SizedBox(height: 8), // Add spacing between the texts
+                        Text(
+                          '${DateTime.now().day} ${_getMonthName(DateTime.now().month)}, ${DateTime.now().year}',
+                          style: TextStyle(
+                            color: Colors.grey[200],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    '${DateTime.now().day} ${_getMonthName(DateTime.now().month)}, ${DateTime.now().year}',
-                    style: TextStyle(
-                      color: Colors.grey[200],
-                    ),
-                  ),
-
-                  // Rest of the code...
-                  // Padding(
-                  //   padding: const EdgeInsets.all(30.0),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Column(
-                  //         // crossAxisAlignment: CrossAxisAlignment.start,
-                  //         children: [
-                  //           // greeting row
-                  //           Text(
-                  //             "Hi Sanjeela!",
-                  //             style: TextStyle(
-                  //               color: Colors.white,
-                  //               fontSize: 22,
-                  //               fontWeight: FontWeight.bold,
-                  //               // fontFamily: "Times New Roman",
-                  //             ),
-                  //           ),
-                  //           SizedBox(
-                  //             height: 8,
-                  //           ),
-                  //           Text(
-                  //             '23 Jan, 2023',
-                  //             style: TextStyle(
-                  //               color: Colors.grey[200],
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 0.0, horizontal: 0.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => NotificationScreen(),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey[800],
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              padding: EdgeInsets.all(12),
-                              child: Icon(
-                                Icons.notifications,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
+                      width:
+                          16), // Add spacing between the texts and GestureDetector
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => NotificationScreen(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[800],
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: EdgeInsets.all(12),
+                      child: Icon(
+                        Icons.notifications,
+                        color: Colors.white,
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
           ),
-          SizedBox(
-            height: 100,
-          ),
+
+          // SizedBox(
+          //   height: 10,
+          // ),
           // main white area
           Row(
             children: [
               Expanded(
                 child: Container(
                   color: Colors.black26,
-                  height: 470,
-                  width: 100,
                   child: Column(
                     children: [
                       ButtonBar(
@@ -250,7 +220,7 @@ class _DashboardState extends State<Dashboard> {
                                 child: Column(
                                   children: [
                                     Icon(
-                                      Icons.camera,
+                                      Icons.remove_red_eye_rounded,
                                       size: 40,
                                       color: Colors.white,
                                     ),
@@ -261,15 +231,13 @@ class _DashboardState extends State<Dashboard> {
                                   ],
                                 ),
                               ),
-
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            pHvalue(),
-                                      ),
-                                      );
+                                    MaterialPageRoute(
+                                      builder: (context) => pHvalue(),
+                                    ),
+                                  );
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: Colors.grey[800],
@@ -281,7 +249,7 @@ class _DashboardState extends State<Dashboard> {
                                 child: Column(
                                   children: [
                                     Icon(
-                                      Icons.pin,
+                                      Icons.av_timer_outlined,
                                       size: 40,
                                       color: Colors.white,
                                     ),
@@ -289,7 +257,6 @@ class _DashboardState extends State<Dashboard> {
                                       'pH',
                                       style: TextStyle(color: Colors.white),
                                     ),
-
                                   ],
                                 ),
                               ),
@@ -300,9 +267,39 @@ class _DashboardState extends State<Dashboard> {
                       Row(
                         children: [
                           ButtonBar(
-                            // alignment: MainAxisAlignment.spaceBetween,
+                            alignment: MainAxisAlignment.start,
                             buttonPadding: EdgeInsets.symmetric(horizontal: 16),
                             children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Button Intruder Face Recognition action
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) => NewScreen(),
+                                    ),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey[800],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  minimumSize: Size(180, 150),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.camera,
+                                      size: 40,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      'New',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pushReplacement(
@@ -339,6 +336,48 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ],
                       ),
+                      // Row(
+                      //   children: [
+                      //     ButtonBar(
+                      //       // alignment: MainAxisAlignment.spaceBetween,
+                      //       buttonPadding: EdgeInsets.symmetric(horizontal: 16),
+                      //       children: [
+                      //         ElevatedButton(
+                      //           onPressed: () {
+                      //             Navigator.of(context).pushReplacement(
+                      //               MaterialPageRoute(
+                      //                 builder: (context) => Fingerprint(),
+                      //               ),
+                      //             );
+                      //           },
+                      //           style: ElevatedButton.styleFrom(
+                      //             primary: Colors.grey[800],
+                      //             shape: RoundedRectangleBorder(
+                      //               borderRadius: BorderRadius.circular(8),
+                      //             ),
+                      //             minimumSize: Size(180, 50),
+                      //           ),
+                      //           child: Row(
+                      //             children: [
+                      //               Padding(
+                      //                 padding: const EdgeInsets.all(15.0),
+                      //                 child: Text(
+                      //                   'Logout',
+                      //                   style: TextStyle(color: Colors.white),
+                      //                 ),
+                      //               ),
+                      //               Icon(
+                      //                 Icons.logout,
+                      //                 size: 40,
+                      //                 color: Colors.white,
+                      //               ),
+                      //             ],
+                      //           ),
+                      //         ),
+                      //       ],
+                      //     ),
+                      //   ],
+                      // ),
                     ],
                   ),
                 ),

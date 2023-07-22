@@ -65,7 +65,16 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Container(
               padding: EdgeInsets.all(20),
               child: Column(
-                children: [
+                children: <Widget>[
+                  // Align(
+                  //   alignment: Alignment.center,
+                  //   child:
+                  Image.asset(
+                    'assets/images/whiteLogo.png',
+                    width: 120.0,
+                    // height: 150,
+                  ),
+                  // ),
                   Text(
                     "Login",
                     style: TextStyle(
@@ -94,7 +103,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         size: 22.0,
                       ),
                       hintText: 'Email Address',
-                      hintStyle: TextStyle(fontSize: 17.0, fontFamily: "Times New Roman"),
+                      hintStyle: TextStyle(
+                          fontSize: 17.0, fontFamily: "Times New Roman"),
                     ),
                   ),
                   SizedBox(
@@ -119,7 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: Colors.black,
                       ),
                       hintText: 'PIN',
-                      hintStyle: const TextStyle(fontSize: 17.0, fontFamily: "Times New Roman"),
+                      hintStyle: const TextStyle(
+                          fontSize: 17.0, fontFamily: "Times New Roman"),
                       suffixIcon: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -147,7 +158,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Forgot PIN?",
-                          style: TextStyle(color: Colors.blue[900], fontFamily: "Times New Roman"),
+                          style: TextStyle(
+                              color: Colors.blue[900],
+                              fontFamily: "Times New Roman"),
                         ),
                       )),
                   SizedBox(
@@ -163,8 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
-                                      side: BorderSide(
-                                          color: Colors.white))),
+                                      side: BorderSide(color: Colors.white))),
                           padding: MaterialStateProperty.all<EdgeInsets>(
                               EdgeInsets.symmetric(vertical: 20)),
                         ),
@@ -173,7 +185,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         child: Text(
                           "Log In",
-                          style: TextStyle(fontSize: 20, fontFamily: "Times New Roman", color:Colors.white),
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: "Times New Roman",
+                              color: Colors.white),
                         )),
                   ),
                   SizedBox(
@@ -184,7 +199,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         "Login with biometrics? ",
-                        style: TextStyle(color: Colors.grey.shade800, fontFamily: "Times New Roman"),
+                        style: TextStyle(
+                            color: Colors.grey.shade800,
+                            fontFamily: "Times New Roman"),
                       ),
                       InkWell(
                           onTap: () {
@@ -196,7 +213,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           child: Text(
                             "Login with Biometrics",
-                            style: TextStyle(color: Colors.red, fontFamily: "Times New Roman"),
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontFamily: "Times New Roman"),
                           ))
                     ],
                   ),
