@@ -5,8 +5,9 @@ import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/ph.dart';
 
+import 'Fan.dart';
 import 'Notification.dart';
-import 'new.dart';
+import 'WaterTemp.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -56,7 +57,7 @@ class _DashboardState extends State<Dashboard> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(
-                vertical: 90,
+                vertical: 70,
                 horizontal: 30), // Add padding around the entire widget
             child: Align(
               alignment: Alignment.topRight,
@@ -74,12 +75,12 @@ class _DashboardState extends State<Dashboard> {
                           "Hi Sanjeela!",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 22,
+                            fontSize: 28,
                             fontWeight: FontWeight.bold,
                             // fontFamily: "Times New Roman",
                           ),
                         ),
-                        SizedBox(height: 8), // Add spacing between the texts
+                        SizedBox(height: 10), // Add spacing between the texts
                         Text(
                           '${DateTime.now().day} ${_getMonthName(DateTime.now().month)}, ${DateTime.now().year}',
                           style: TextStyle(
@@ -164,10 +165,10 @@ class _DashboardState extends State<Dashboard> {
                           ),
                           ElevatedButton(
                             onPressed: () {
-                              // Button Face Recognition action
+                              // Button Intruder Face Recognition action
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => Changepassword(),
+                                  builder: (context) => FanControlScreen(),
                                 ),
                               );
                             },
@@ -181,12 +182,12 @@ class _DashboardState extends State<Dashboard> {
                             child: Column(
                               children: [
                                 Icon(
-                                  Icons.pin_outlined,
+                                  Icons.camera,
                                   size: 40,
                                   color: Colors.white,
                                 ),
                                 Text(
-                                  'Change Password',
+                                  'Fan',
                                   style: TextStyle(color: Colors.white),
                                 ),
                               ],
@@ -275,7 +276,7 @@ class _DashboardState extends State<Dashboard> {
                                   // Button Intruder Face Recognition action
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
-                                      builder: (context) => NewScreen(),
+                                      builder: (context) => WaterTemperature(),
                                     ),
                                   );
                                 },
@@ -294,12 +295,52 @@ class _DashboardState extends State<Dashboard> {
                                       color: Colors.white,
                                     ),
                                     Text(
-                                      'New',
+                                      'Water Temperature',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   ],
                                 ),
                               ),
+                              ElevatedButton(
+                                onPressed: () {
+                                  // Button Face Recognition action
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) => Changepassword(),
+                                    ),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.grey[800],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  minimumSize: Size(180, 150),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.pin_outlined,
+                                      size: 40,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      'Change Password',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          ButtonBar(
+                            // alignment: MainAxisAlignment.spaceBetween,
+                            buttonPadding: EdgeInsets.symmetric(horizontal: 16),
+                            children: [
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pushReplacement(
@@ -336,48 +377,6 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ],
                       ),
-                      // Row(
-                      //   children: [
-                      //     ButtonBar(
-                      //       // alignment: MainAxisAlignment.spaceBetween,
-                      //       buttonPadding: EdgeInsets.symmetric(horizontal: 16),
-                      //       children: [
-                      //         ElevatedButton(
-                      //           onPressed: () {
-                      //             Navigator.of(context).pushReplacement(
-                      //               MaterialPageRoute(
-                      //                 builder: (context) => Fingerprint(),
-                      //               ),
-                      //             );
-                      //           },
-                      //           style: ElevatedButton.styleFrom(
-                      //             primary: Colors.grey[800],
-                      //             shape: RoundedRectangleBorder(
-                      //               borderRadius: BorderRadius.circular(8),
-                      //             ),
-                      //             minimumSize: Size(180, 50),
-                      //           ),
-                      //           child: Row(
-                      //             children: [
-                      //               Padding(
-                      //                 padding: const EdgeInsets.all(15.0),
-                      //                 child: Text(
-                      //                   'Logout',
-                      //                   style: TextStyle(color: Colors.white),
-                      //                 ),
-                      //               ),
-                      //               Icon(
-                      //                 Icons.logout,
-                      //                 size: 40,
-                      //                 color: Colors.white,
-                      //               ),
-                      //             ],
-                      //           ),
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ],
-                      // ),
                     ],
                   ),
                 ),
