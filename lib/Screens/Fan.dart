@@ -1,59 +1,62 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-import 'dashboard.dart';
-
-class FanControlScreen extends StatefulWidget {
-  const FanControlScreen({Key? key}) : super(key: key);
-
-  @override
-  State<FanControlScreen> createState() => _FanControlScreenState();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MyApp());
 }
 
-class _FanControlScreenState extends State<FanControlScreen> {
-  final DatabaseReference _fanStatusRef =
-      FirebaseDatabase.instance.reference().child('fan').child('status');
-
-  void _turnFanOn() {
-    _fanStatusRef.set('on');
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: FanControlScreen(),
+    );
   }
+}
 
-  void _turnFanOff() {
-    _fanStatusRef.set('off');
+class FanControlScreen extends StatelessWidget {
+  final DatabaseReference _fanSpeedRef =
+      FirebaseDatabase.instance.reference().child('fan').child('speed');
+
+  void _setFanSpeed(int speed) {
+    // Update the fan speed value in Firebase
+    _fanSpeedRef.set(speed);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.grey[900],
-          leading: IconButton(
-            icon: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Dashboard()),
-              );
-            },
-          ),
-          title: Text("Control Fan"),
+      appBar: AppBar(
+        title: Text("Fan Speed Control"),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
-        body: Column(
+      ),
+      body: Center(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             ElevatedButton(
-              onPressed: _turnFanOn,
-              child: Text('Turn Fan On'),
-            ),
-            ElevatedButton(
-              onPressed: _turnFanOff,
+              onPressed: () => _setFanSpeed(0), // Turn fan off
               child: Text('Turn Fan Off'),
             ),
+            ElevatedButton(
+              onPressed: () => _setFanSpeed(128), // Set fan speed to 50%
+              child: Text('50% Speed'),
+            ),
+            ElevatedButton(
+              onPressed: () => _setFanSpeed(255), // Set fan speed to 100%
+              child: Text('100% Speed'),
+            ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
