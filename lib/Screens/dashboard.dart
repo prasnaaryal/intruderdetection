@@ -168,7 +168,7 @@ class _DashboardState extends State<Dashboard> {
                               // Button Intruder Face Recognition action
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => FanControlScreen(),
+                                  builder: (context) => FanControlPage(),
                                 ),
                               );
                             },
