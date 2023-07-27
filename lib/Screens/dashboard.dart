@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intruderdetection/Screens/UploadAndViewImages.dart';
 import 'package:intruderdetection/Screens/UploadAndViewImagesIntruders.dart';
+import 'package:intruderdetection/Screens/WaterTem_value.dart';
 import 'package:intruderdetection/Screens/biometrics_login.dart';
 import 'package:intruderdetection/Screens/changepin.dart';
 import 'package:intruderdetection/Screens/ph.dart';
 
 import 'Fan.dart';
 import 'Notification.dart';
-import 'WaterTemp.dart';
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -276,7 +277,7 @@ class _DashboardState extends State<Dashboard> {
                                   // Button Intruder Face Recognition action
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
-                                      builder: (context) => WaterTemperature(),
+                                      builder: (context) => WaterTempValue(),
                                     ),
                                   );
                                 },
@@ -290,7 +291,7 @@ class _DashboardState extends State<Dashboard> {
                                 child: Column(
                                   children: [
                                     Icon(
-                                      Icons.camera,
+                                      Icons.water,
                                       size: 40,
                                       color: Colors.white,
                                     ),
