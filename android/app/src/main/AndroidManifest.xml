@@ -2,7 +2,7 @@
     package="com.example.intruderdetection">
     <uses-permission android:name="android.permission.FINGERPRINT"/>
    <application
-        android:label="intruderdetection"
+        android:label="Home Security"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
