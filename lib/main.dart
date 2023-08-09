@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:google_fonts/google_fonts.dart';
+//import 'package:google_fonts/google_fonts.dart';
 import 'package:intruderdetection/Screens/Register.dart';
 import 'package:intruderdetection/Screens/Turbidity_value.dart';
 import 'package:intruderdetection/Screens/WaterTem_value.dart';
@@ -111,7 +111,7 @@ class MyApp extends StatelessWidget {
                   enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(width: 1.2, color: Colors.white),
               )),
-              textTheme: GoogleFonts.poppinsTextTheme(),
+              //  textTheme: GoogleFonts.poppinsTextTheme(),
             ),
             initialRoute: "/dashboard",
             routes: {

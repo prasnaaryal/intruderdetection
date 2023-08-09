@@ -40,7 +40,10 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
           appBar: AppBar(
             backgroundColor: Colors.grey[900],
             leading: IconButton(
-              icon: Icon(Icons.arrow_back,color: Colors.white,),
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
               onPressed: () {
                 Navigator.pop(context);
                 Navigator.push(
@@ -49,32 +52,67 @@ class _UploadAndViewImagesState extends State<UploadAndViewImages> {
                 );
               },
             ),
-            title: Text('Known Faces',style:
-              TextStyle(
+            title: Text(
+              'Known Faces',
+              style: TextStyle(
                 fontFamily: "Times New Roman",
                 color: Colors.white,
-              ),),
+              ),
+            ),
           ),
           body: ListView.builder(
             itemCount: faceVM.allFace.length,
             itemBuilder: (BuildContext context, int index) {
               Face face = faceVM.allFace[index];
               print("face printed in model $face");
-              return ListTile(
-                leading: Image.network(face.imageurl!),
-                title: Text(face.name!,style: TextStyle(
-                  color: Colors.white, fontFamily: "Times New Roman"
-                ),),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
+              return Container(
+                margin: EdgeInsets.symmetric(
+                    horizontal: 16, vertical: 8), // Adjust margins as needed
+                padding: EdgeInsets.all(8), // Adjust padding as needed
+                decoration: BoxDecoration(
+                  color:
+                      Colors.grey[900], // Background color that matches black
+                  borderRadius: BorderRadius.circular(
+                      8), // Rounded corners with border radius
+                  border: Border.all(
+                    color: Colors.white, // Border color
+                    width: 1.0, // Border width
+                  ),
+                ),
+                child: ListTile(
+                  leading: Container(
+                    width: 50, // Adjust the width as needed
+                    height: 50, // Adjust the height as needed
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(face.imageurl!),
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    face.name!,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: "Times New Roman",
+                      fontSize: 16, // Adjust the font size as needed
+                      fontWeight:
+                          FontWeight.bold, // Adjust the font weight as needed
+                    ),
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
                         builder: (context) => KnownFaceDetails(
-                              face: face,
-                            )),
-                  );
-                },
+                          face: face,
+                        ),
+                      ),
+                    );
+                  },
+                ),
               );
             },
           ),

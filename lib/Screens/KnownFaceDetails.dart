@@ -6,6 +6,7 @@ import 'package:intruderdetection/viewmodel/face_viewmodel.dart';
 import 'package:intruderdetection/viewmodel/global_ui_viewmodel.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class KnownFaceDetails extends StatefulWidget {
   late Face face;
 
@@ -30,52 +31,109 @@ class _KnownFaceDetailsState extends State<KnownFaceDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black26,
       appBar: AppBar(
-        title: Text("Details"),
+        backgroundColor: Colors.grey[900],
+        title: Text(
+          "Details",
+          style: TextStyle(color: Colors.white),
+        ),
         actions: [
           IconButton(
-              onPressed: (() {
-                Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => UploadAndViewImages()));
-              }),
-              icon: Icon(Icons.cut_outlined))
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UploadAndViewImages(),
+                ),
+              );
+            },
+            icon: Icon(
+              Icons.clear,
+              color: Colors.white,
+            ),
+          ),
         ],
       ),
       body: Center(
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            GestureDetector(
-              child: CircleAvatar(
-                  radius: 150,
-                  backgroundImage: NetworkImage(widget.face.imageurl!)),
-              onTap: () {
-                print("path of the image displayed: ${widget.face.imagepath}");
-              },
-            ),
-            Text(widget.face.name!),
-            ElevatedButton(
-                onPressed: (() {
+        child: Container(
+          width: 300,
+          child: ListView(
+            children: [
+              SizedBox(
+                height: 100,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: Colors.white, // Border color
+                    width: 2.0, // Border width
+                  ),
+                ),
+                child: CircleAvatar(
+                  radius:
+                      100, // Adjust the radius to make the CircleAvatar smaller
+                  backgroundImage: NetworkImage(widget.face.imageurl!),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                child: Center(
+                  child: Text(
+                    widget.face.name!,
+                    style: TextStyle(
+                      color: Colors.white, // Text color
+                      fontSize: 32, // Adjust the font size as needed
+                      fontWeight:
+                          FontWeight.bold, // Adjust the font weight as needed
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 200,
+              ),
+              ElevatedButton(
+                onPressed: () {
                   print("delete button clicked ${widget.face.docId}");
                   _face.deleteFace(widget.face).then((value) {
                     _face.delete(widget.face);
-                    print("face documnet to delete ${widget.face.docId}");
+                    print("face document to delete ${widget.face.docId}");
                     ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Face Deleted sucessfully")));
+                      SnackBar(content: Text("Face Deleted successfully")),
+                    );
                     Navigator.pop(context);
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const UploadAndViewImages()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UploadAndViewImages(),
+                      ),
+                    );
                   });
-                }),
-                child: Text("Delete"))
-          ],
+                },
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.grey[800], // Background color of the button
+                  onPrimary: Colors.white, // Text color of the button
+                  textStyle: TextStyle(
+                    fontSize: 22, // Font size of the text
+                    fontWeight: FontWeight.bold, // Font weight of the text
+                  ),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 12), // Adjust padding as needed
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(
+                        8), // Rounded corners with border radius
+                    // You can also set other properties for the button shape, like side: BorderSide(color: Colors.black, width: 2)
+                  ),
+                ),
+                child: Text("Delete"),
+              ),
+            ],
+          ),
         ),
       ),
     );

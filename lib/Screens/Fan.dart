@@ -1,60 +1,146 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
-}
+import 'dashboard.dart';
 
-class MyApp extends StatelessWidget {
+class FanControlPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: FanControlScreen(),
-    );
-  }
+  State<FanControlPage> createState() => _FanControlPageState();
 }
 
-class FanControlScreen extends StatelessWidget {
-  final DatabaseReference _fanSpeedRef =
-      FirebaseDatabase.instance.reference().child('fan').child('speed');
+class _FanControlPageState extends State<FanControlPage> {
+  bool kitchenFanOn = false;
+  String kitchenFan = 'OFF';
 
-  void _setFanSpeed(int speed) {
-    // Update the fan speed value in Firebase
-    _fanSpeedRef.set(speed);
+  void sendKitchenFanStatusToFirebase(String status) {
+    DatabaseReference databaseReference = FirebaseDatabase.instance
+        .reference()
+        .child('FanControl')
+        .child('FanStatus');
+    databaseReference.set(status);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Fan Speed Control"),
+        elevation: 0,
+        backgroundColor: Colors.white,
+        centerTitle: true,
+        title: Text(
+          'Fan Control',
+        ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Color(0xFF7a6bbc),
+          ),
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Dashboard(),
+              ),
+            );
           },
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () => _setFanSpeed(0), // Turn fan off
-              child: Text('Turn Fan Off'),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            width: 100.0,
+            height: 200.0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 18.0),
+                Text(
+                  "Fans",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF7a6bbc),
+                  ),
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () => _setFanSpeed(128), // Set fan speed to 50%
-              child: Text('50% Speed'),
+          ),
+          Padding(
+            padding: EdgeInsets.all(12.0),
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 10.0,
+              runSpacing: 10.0,
+              children: [
+                FanControlCard(
+                  fanName: "Kitchen Fan",
+                  fanStatus: kitchenFanOn,
+                  onTap: () {
+                    setState(() {
+                      kitchenFanOn = !kitchenFanOn;
+                    });
+
+                    kitchenFan = kitchenFanOn ? 'ON' : 'OFF';
+                    sendKitchenFanStatusToFirebase(kitchenFan);
+                  },
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () => _setFanSpeed(255), // Set fan speed to 100%
-              child: Text('100% Speed'),
-            ),
-          ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FanControlCard extends StatelessWidget {
+  final String fanName;
+  final bool fanStatus;
+  final VoidCallback onTap;
+
+  const FanControlCard({
+    required this.fanName,
+    required this.fanStatus,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 150.0,
+      height: 200.0,
+      child: Card(
+        color: Color(0xFF7a6bbc),
+        elevation: 2.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: InkWell(
+          onTap: onTap,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 8.0),
+              Text(
+                fanName,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  color: fanStatus ? Colors.yellow : Colors.white,
+                ),
+              ),
+              SizedBox(height: 4.0),
+              Text(
+                fanStatus ? 'ON' : 'OFF',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: fanStatus ? Colors.green : Colors.red,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
