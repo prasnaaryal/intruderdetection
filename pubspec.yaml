@@ -58,9 +58,12 @@ dependencies:
   motion_toast: ^2.6.8
   pin_code_fields: ^7.4.0
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  font_awesome_flutter: ^10.4.0
+
 flutter_icons:
   android: "launcher_icon"
   ios: true

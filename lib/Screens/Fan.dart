@@ -23,17 +23,14 @@ class _FanControlPageState extends State<FanControlPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black26,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-        title: Text(
-          'Fan Control',
-        ),
+        backgroundColor: Colors.grey[900],
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Color(0xFF7a6bbc),
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.push(
@@ -44,38 +41,23 @@ class _FanControlPageState extends State<FanControlPage> {
             );
           },
         ),
+        centerTitle: true,
+        title: Text(
+          'Fan Control',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(
-            width: 100.0,
-            height: 200.0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: 18.0),
-                Text(
-                  "Fans",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Color(0xFF7a6bbc),
-                  ),
-                ),
-              ],
-            ),
-          ),
           Padding(
             padding: EdgeInsets.all(12.0),
             child: Wrap(
               alignment: WrapAlignment.center,
-              spacing: 10.0,
-              runSpacing: 10.0,
               children: [
                 FanControlCard(
-                  fanName: "Kitchen Fan",
+                  fanName: "Fan",
                   fanStatus: kitchenFanOn,
                   onTap: () {
                     setState(() {
@@ -112,7 +94,7 @@ class FanControlCard extends StatelessWidget {
       width: 150.0,
       height: 200.0,
       child: Card(
-        color: Color(0xFF7a6bbc),
+        color: Colors.grey[800],
         elevation: 2.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),

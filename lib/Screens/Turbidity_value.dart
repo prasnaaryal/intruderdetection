@@ -71,15 +71,6 @@ class _TurbidityValueState extends State<TurbidityValue> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "Turbidity Value",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontFamily: "Times New Roman",
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             SizedBox(height: 20),
             Container(
               width: 300,
@@ -134,16 +125,16 @@ class _TurbidityValueState extends State<TurbidityValue> {
                     rows: sensorData
                         .map(
                           (data) => DataRow(
-                        cells: [
-                          DataCell(Text(data['timestamp'].toString())),
-                          DataCell(
-                            Text(
-                              '${data['turbidity'].toStringAsFixed(1)}',
-                            ),
+                            cells: [
+                              DataCell(Text(data['timestamp'].toString())),
+                              DataCell(
+                                Text(
+                                  '${data['turbidity'].toStringAsFixed(1)}',
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    )
+                        )
                         .toList(),
                   ),
                 ),

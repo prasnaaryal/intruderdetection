@@ -71,15 +71,6 @@ class _pHvalueState extends State<pHvalue> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "pH Value",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
-                fontFamily: "Times New Roman",
-                fontWeight: FontWeight.bold,
-              ),
-            ),
             SizedBox(height: 20),
             Container(
               width: 300,
@@ -134,16 +125,16 @@ class _pHvalueState extends State<pHvalue> {
                     rows: sensorData
                         .map(
                           (data) => DataRow(
-                        cells: [
-                          DataCell(Text(data['timestamp'].toString())),
-                          DataCell(
-                            Text(
-                              '${data['pH'].toStringAsFixed(1)}',
-                            ),
+                            cells: [
+                              DataCell(Text(data['timestamp'].toString())),
+                              DataCell(
+                                Text(
+                                  '${data['pH'].toStringAsFixed(1)}',
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    )
+                        )
                         .toList(),
                   ),
                 ),
